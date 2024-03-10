@@ -1,0 +1,49 @@
+<div class="container-fluid" id="main-content">
+  <div class="row">
+    <div class="col-12">
+      <nav class="navbar navbar-light bg-success">
+        <div class="container-fluid justify-content-center">
+          <span class="navbar-brand mb-0 h1 text-white">BANTADS</span>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="content">
+    <!--
+    <div class="image-container text-center mt-3">
+      <img src="assets/images/.png"
+           alt="" class="img-fluid">
+    </div>
+    -->
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="mt-3">
+      <div class="row justify-content-center">
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label for="emailInput" class="form-label">Login</label>
+            <input type="email" class="form-control" id="emailInput" ngModel name="email" required email #emailCtrl="ngModel">
+            <div *ngIf="!emailCtrl.valid && emailCtrl.touched" class="text-danger">
+              Informe um login válido.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="passwordInput" class="form-label">{{ isLogin ? 'Senha' : 'CPF' }}</label>
+            <input type="password" class="form-control" id="passwordInput" ngModel name="password" required minlength="6" #passwordCtrl="ngModel">
+            <div *ngIf="!passwordCtrl.valid && passwordCtrl.touched" class="text-danger">
+              {{ isLogin ? 'A senha deve conter no mínimo 6 caracteres.' : 'CPF inválido.' }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-sm-6 d-grid gap-2">
+          <button type="button" class="btn btn-outline-success" (click)="onSwitchAuthMode()">
+            Mudar para {{ isLogin ? 'Recuperar senha' : 'Autenticar' }}
+          </button>
+          <button type="submit" class="btn btn-success" [disabled]="!f.valid">
+            {{ isLogin ? 'Autenticar' : 'Recuperar senha' }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
