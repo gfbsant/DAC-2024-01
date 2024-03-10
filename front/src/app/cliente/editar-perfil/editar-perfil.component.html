@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>Editar Perfil</h2>
+    <form>
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" id="nome" [(ngModel)]="perfil.nome" name="nome">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" class="form-control" id="email" [(ngModel)]="perfil.email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="text" class="form-control" id="telefone" [(ngModel)]="perfil.telefone" name="telefone" maxlength="11">
+      </div>
+      <div class="form-group">
+        <label for="endereco">Endereço:</label>
+        <input type="text" class="form-control" id="endereco" [(ngModel)]="perfil.endereco" name="endereco">
+      </div>
+      <div class="form-group">
+        <label for="cpf">CPF:</label>
+        <input type="text" class="form-control" id="cpf" [(ngModel)]="perfil.cpf" name="cpf" [disabled]="true">
+      </div>
+      <div class="form-group">
+        <label for="conta">Número da Conta:</label>
+        <input type="text" class="form-control" id="conta" [(ngModel)]="perfil.numeroConta" name="conta" [disabled]="true">
+      </div>
+      <div class="form-group">
+        <label for="salario">Salário:</label>
+        <input type="number" class="form-control" id="salario" [(ngModel)]="perfil.salario" name="salario">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="novoSaldo()">Salvar</button>
+    </form>
+  </div>
+  
