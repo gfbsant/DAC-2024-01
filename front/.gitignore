@@ -43,3 +43,4 @@ Thumbs.db
 /.vscode/
 /.idea/
 *.iml
+/.idea/*

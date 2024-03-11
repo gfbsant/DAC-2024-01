@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {Login} from "../../../../models/login/login.model";
+import {Usuario} from "../../../../models/usuario/usuario.model";
+import {LoginService} from "../../../../services/login/login.service";
 
 @Component({
   selector: 'app-autenticacao',
@@ -9,7 +12,12 @@ import { NgForm } from '@angular/forms';
 export class AutenticacaoComponent {
   isLogin = true;
 
-    constructor() {}
+    constructor(private loginService: LoginService) {}
+
+  ngOnInit(): void {
+    //para nao mostrar as opções de submenus
+    this.loginService.logout();
+  }
 
     onSubmit(form: NgForm) {
       if (this.isLogin) {

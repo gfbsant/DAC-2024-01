@@ -2,16 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.component';
 import { FormsModule } from '@angular/forms';
-import { TelaInicialComponent } from './components/tela-inicial/tela-inicial.component';
-import { AutenticacaoComponent } from './components/autenticacao/autenticacao.component';
-
-
+import { AutenticacaoComponent } from '../auth/components/autenticacao/autenticacao.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     EditarPerfilComponent,
-    TelaInicialComponent,
-    AutenticacaoComponent
+    AutenticacaoComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

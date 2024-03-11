@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClienteModule } from './modules/cliente/cliente.module';
+import {BaseLayoutModule} from "./modules/base-layout/base-layout/base-layout.module";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ClienteModule } from './modules/cliente/cliente.module';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    ClienteModule
+    ClienteModule,
+    BaseLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
