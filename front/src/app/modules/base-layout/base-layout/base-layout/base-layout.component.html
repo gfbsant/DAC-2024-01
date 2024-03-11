@@ -6,7 +6,7 @@ color:#000000;" >
       <i class="bi bi-bank"></i>
       BANTADS
     </a>
-    <ul *ngIf="usuario?.perfil?.includes('CLIENTE') " class="nav hstack gap-4">
+    <ul *ngIf="usuario?.perfil?.includes('CLIENTE') " class="nav gap-3">
       <button *ngIf="!isCurrentRoute('/cliente/editar-perfil')" class="btn btn-outline-dark" (click)="goAlterarPerfil()">
         Alterar Perfil
       </button>
@@ -38,8 +38,8 @@ color:#000000;" >
       <button *ngIf="isCurrentRoute('/cliente/consulta-extrato')" class="btn btn-outline-dark active" aria-current="page"
               (click)="goConsultaExtrato()">Consulta do Extrato
       </button>
-      <button class="btn btn-outline-danger active" aria-current="page"
-              (click)="logout()">Logout
+      <button class="btn btn-danger" aria-current="page"
+              (click)="logout()">Sair
       </button>
     </ul>
 
