@@ -1,0 +1,63 @@
+
+.form-control {
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  box-shadow: none;
+}
+
+/* Style for the send button */
+.btn-primary {
+  background-color: #0056b3; /* Use your primary color */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 1em;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Adjust button style on hover */
+.btn-primary:hover {
+  background-color: #003580; /* Darken the button slightly on hover */
+}
+
+/* Additional CSS for full height sidebar */
+.col-md-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This ensures the title and image are spaced out */
+}
+
+/* If you want the image to not stretch too much, set a max-height */
+
+
+/* You may want to ensure the form takes full height as well */
+.col-md-8 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Make sure the button sticks to the bottom */
+form > .mt-4 {
+  margin-top: auto; /* Push the button to the bottom */
+}
+
+/* Rest of your CSS */
+.blue-background {
+  background-color: blue;
+  height: 50%;
+}
+
+h3 {
+  border-bottom: 1px solid #F2F2F2; /* Altere a cor conforme necessário */
+  padding-bottom: 10px; /* Adiciona um pouco de espaço entre o texto e a linha */
+}
+
+/* Adiciona espaço acima do elemento */
+#dados, #endereco {
+  margin-top: 30px; /* Altere o valor conforme necessário */
+}

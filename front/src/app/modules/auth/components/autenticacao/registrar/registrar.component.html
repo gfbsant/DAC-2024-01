@@ -1,0 +1,125 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-primary mb-4">Olá, venha se juntar ao BanTADS!</h1>
+      <p class="text-black col-md-5">Gerencie suas finanças de forma simples com o Internet Banking do TADS. Vamos
+        começar?</p>
+    </div>
+  </div>
+  <form #formRegistro="ngForm" (ngSubmit)="onSubmit(formRegistro)">
+    <div class="row">
+      <div class="col-12" id="dados">
+        <h3>1 - Insira seus dados</h3>
+        <div class="row">
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="nome" placeholder="Nome completo"
+                   ngModel name="nome" required #nomeCtrl="ngModel">
+            <label for="nome">Nome</label>
+            <i *ngIf="nomeCtrl.valid && nomeCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <i *ngIf="nomeCtrl.invalid && nomeCtrl.touched"
+               class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <div *ngIf="nomeCtrl.invalid && nomeCtrl.touched" class="text-danger">
+              Nome é obrigatório.
+            </div>
+          </div>
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="email" class="form-control" id="email" placeholder="email@example.com"
+                   ngModel name="email" required email #emailCtrl="ngModel">
+            <label for="email">E-mail</label>
+            <i *ngIf="emailCtrl.valid && emailCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <i *ngIf="emailCtrl.invalid && emailCtrl.touched"
+               class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="text-danger">
+              Informe um e-mail válido.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="cpf" placeholder="Precisamos de um CPF válido."
+                   inputmode="numeric" mask="000.000.000-00" ngModel name="cpfCtrl" required cpf #cpfCtrl="ngModel">
+
+            <label for="cpf" class="form-label">CPF</label>
+            <i *ngIf="cpfCtrl.valid && cpfCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <i *ngIf="cpfCtrl.invalid && cpfCtrl.touched"
+               class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <div *ngIf="cpfCtrl.invalid && cpfCtrl.touched" class="text-danger">
+              Informe um CPF válido.
+            </div>
+          </div>
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="tel" class="form-control" id="telefone" placeholder="(XX) XXXXX-XXXX" mask="(00) 0 0000 0000"
+                   ngModel name="telefone" required telefone #telefoneCtrl="ngModel">
+            <label for="telefone" class="form-label">Telefone</label>
+            <i *ngIf="telefoneCtrl.valid && telefoneCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <i *ngIf="telefoneCtrl.invalid && telefoneCtrl.touched"
+               class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <div *ngIf="telefoneCtrl.invalid && telefoneCtrl.touched" class="text-danger">
+              Informe um telefone válido.
+            </div>
+          </div>
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="salario" placeholder="Salário atual" ngModel name="salario"
+                   required salario #salarioCtrl="ngModel">
+            <label for="salario" class="form-label">Salário</label>
+            <i *ngIf="salarioCtrl.valid && salarioCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-12" id="endereco">
+        <h3>2 - Informações de endereço</h3>
+        <div class="row">
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="cep" placeholder="CEP" inputmode="numeric" mask="00000-000"
+                   ngModel name="cep" required cep #cepCtrl="ngModel">
+            <label for="cep" class="form-label">CEP</label>
+            <i *ngIf="cepCtrl.valid && cepCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <i *ngIf="cepCtrl.invalid && cepCtrl.touched"
+               class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <div *ngIf="cepCtrl.invalid && cepCtrl.touched" class="text-danger">
+              Informe um CEP válido.
+            </div>
+          </div>
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="logradouro" placeholder="Logradouro" ngModel name="telefone"
+                   required telefone #telefoneCtrl="ngModel">
+            <label for="logradouro" class="form-label">Logradouro</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="numero" placeholder="Número" >
+            <label for="numero" class="form-label">Número</label>
+          </div>
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="complemento" placeholder="Complemento">
+            <label for="complemento" class="form-label">Complemento</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="cidade" placeholder="Cidade">
+            <label for="cidade" class="form-label">Cidade</label>
+          </div>
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="estado" placeholder="Estado">
+            <label for="estado" class="form-label">Estado</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4">
+      <button type="submit" class="btn btn-primary" [disabled]="!formRegistro.valid">Enviar</button>
+    </div>
+  </form>
+</div>

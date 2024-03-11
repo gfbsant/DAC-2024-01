@@ -4,6 +4,7 @@ import { EditarPerfilComponent } from './components/editar-perfil/editar-perfil.
 import { FormsModule } from '@angular/forms';
 import { AutenticacaoComponent } from '../auth/components/autenticacao/autenticacao.component';
 import { HomeComponent } from './components/home/home.component';
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -11,9 +12,10 @@ import { HomeComponent } from './components/home/home.component';
     AutenticacaoComponent,
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterLink
+    ]
 })
 export class ClienteModule { }
