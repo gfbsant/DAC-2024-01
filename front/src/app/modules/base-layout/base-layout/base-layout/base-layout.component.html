@@ -1,53 +1,52 @@
-<nav class="navbar bg-body-tertiary sticky-top" *ngIf="usuario">
+<nav class="navbar bg-secondary sticky-top mb-5 p-1" *ngIf="usuario && usuario.perfil ">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="usuario.perfil?.includes('CLIENTE') ? '/cliente' : ''"
-       style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-color:#000000;" >
-      <i class="bi bi-bank"></i>
+    <a class="navbar-brand fs-3" [routerLink]="usuario.perfil.includes('CLIENTE') ? '/cliente' : ''"
+       style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color:#ffffff;" >
+      <i class="bi bi-bank mx-1"></i>
       BANTADS
     </a>
     <ul *ngIf="usuario.perfil?.includes('CLIENTE') " class="nav gap-3">
-      <button *ngIf="!isCurrentRoute('/cliente/editar-perfil')" class="btn btn-outline-dark" (click)="goAlterarPerfil()">
-        Alterar Perfil
+      <button *ngIf="!isCurrentRoute('/cliente/editar-perfil')" class="btn btn-outline-light btn-sm" (click)="goAlterarPerfil()">
+        Editar Perfil
       </button>
-      <button *ngIf="isCurrentRoute('/cliente/editar-perfil')" class="btn btn-outline-dark active" aria-current="page"
-              (click)="goAlterarPerfil()">Alterar Perfil
+      <button *ngIf="isCurrentRoute('/cliente/editar-perfil')" class="btn btn-outline-light active btn-sm" aria-current="page"
+              (click)="goAlterarPerfil()">Editar Perfil
       </button>
 
-      <button *ngIf="!isCurrentRoute('/cliente/depositar')" class="btn btn-outline-dark" (click)="goDepositar()">Depositar
+      <button *ngIf="!isCurrentRoute('/cliente/depositar')" class="btn btn-outline-light btn-sm" (click)="goDepositar()">Depositar
       </button>
-      <button *ngIf="isCurrentRoute('/cliente/depositar')" class="btn btn-outline-dark active" aria-current="page"
+      <button *ngIf="isCurrentRoute('/cliente/depositar')" class="btn btn-outline-light active btn-sm" aria-current="page"
               (click)="goDepositar()">Depositar
       </button>
 
-      <button *ngIf="!isCurrentRoute('/cliente/saque')" class="btn btn-outline-dark" (click)="goSaque()">Saque</button>
-      <button *ngIf="isCurrentRoute('/cliente/saque')" class="btn btn-outline-dark active" aria-current="page"
+      <button *ngIf="!isCurrentRoute('/cliente/saque')" class="btn btn-outline-light btn-sm" (click)="goSaque()">Saque</button>
+      <button *ngIf="isCurrentRoute('/cliente/saque')" class="btn btn-outline-light active" aria-current="page"
               (click)="goSaque()">Saque
       </button>
 
-      <button *ngIf="!isCurrentRoute('/cliente/transferencia')" class="btn btn-outline-dark" (click)="goTransferencia()">
+      <button *ngIf="!isCurrentRoute('/cliente/transferencia')" class="btn btn-outline-light btn-sm" (click)="goTransferencia()">
         Transferência
       </button>
-      <button *ngIf="isCurrentRoute('/cliente/transferencia')" class="btn btn-outline-dark active" aria-current="page"
+      <button *ngIf="isCurrentRoute('/cliente/transferencia')" class="btn btn-outline-light active btn-sm" aria-current="page"
               (click)="goTransferencia()">Transferência
       </button>
 
-      <button *ngIf="!isCurrentRoute('/cliente/consulta-extrato')" class="btn btn-outline-dark"
+      <button *ngIf="!isCurrentRoute('/cliente/consulta-extrato')" class="btn btn-outline-light btn-sm"
               (click)="goConsultaExtrato()">Consulta do Extrato
       </button>
-      <button *ngIf="isCurrentRoute('/cliente/consulta-extrato')" class="btn btn-outline-dark active" aria-current="page"
+      <button *ngIf="isCurrentRoute('/cliente/consulta-extrato')" class="btn btn-outline-light active btn-sm" aria-current="page"
               (click)="goConsultaExtrato()">Consulta do Extrato
       </button>
-      <button class="btn btn-danger" aria-current="page"
+      <button class="btn btn-danger btn-sm"
               (click)="logout()">Sair
       </button>
     </ul>
 
-    <ul *ngIf="usuario?.perfil?.includes('GERENTE')" class="nav gap-3">
+    <ul *ngIf="usuario.perfil.includes('GERENTE')" class="nav gap-3">
           <!--to-do-->
     </ul>
 
-    <ul *ngIf="usuario?.perfil?.includes('ADM')" class="nav gap-3">
+    <ul *ngIf="usuario.perfil.includes('ADM')" class="nav gap-3">
       <!--to-do-->
     </ul>
   </div>
