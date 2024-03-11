@@ -1,12 +1,12 @@
 <nav class="navbar bg-body-tertiary sticky-top" *ngIf="usuario">
   <div class="container-fluid">
-    <a class="navbar-brand" [routerLink]="usuario?.perfil?.includes('CLIENTE') ? '/cliente' : ''"
+    <a class="navbar-brand" [routerLink]="usuario.perfil?.includes('CLIENTE') ? '/cliente' : ''"
        style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 color:#000000;" >
       <i class="bi bi-bank"></i>
       BANTADS
     </a>
-    <ul *ngIf="usuario?.perfil?.includes('CLIENTE') " class="nav gap-3">
+    <ul *ngIf="usuario.perfil?.includes('CLIENTE') " class="nav gap-3">
       <button *ngIf="!isCurrentRoute('/cliente/editar-perfil')" class="btn btn-outline-dark" (click)="goAlterarPerfil()">
         Alterar Perfil
       </button>
@@ -43,8 +43,12 @@ color:#000000;" >
       </button>
     </ul>
 
-    <ul *ngIf="usuario?.perfil?.includes('FUNC')" class="nav hstack gap-4">
+    <ul *ngIf="usuario?.perfil?.includes('GERENTE')" class="nav gap-3">
           <!--to-do-->
+    </ul>
+
+    <ul *ngIf="usuario?.perfil?.includes('ADM')" class="nav gap-3">
+      <!--to-do-->
     </ul>
   </div>
 </nav>
