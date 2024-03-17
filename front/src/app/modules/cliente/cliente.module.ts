@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AutenticacaoComponent } from '../auth/components/autenticacao/autenticacao.component';
 import { HomeComponent } from './components/home/home.component';
 import {RouterLink} from "@angular/router";
+import { ConsultaExtratoComponent } from './components/consulta-extrato/consulta-extrato.component';
 
 @NgModule({
   declarations: [
     EditarPerfilComponent,
     AutenticacaoComponent,
-    HomeComponent
+    HomeComponent,
+    ConsultaExtratoComponent
   ],
     imports: [
         CommonModule,
