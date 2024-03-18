@@ -60,4 +60,8 @@ export class UsuarioService {
     const usuario = this.usuarios.find(usuario => usuario.email == login.email && usuario.senha == login.senha);
     return of(usuario ? usuario : null);
   }
+
+  register(value: any) {
+    return of(value);
+  }
 }

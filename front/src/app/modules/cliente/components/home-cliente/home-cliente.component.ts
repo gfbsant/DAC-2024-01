@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LoginService} from "../../../../services/login/login.service";
+import {AuthService} from "../../../../services/auth/auth.service";
 import {ClienteService} from "../../../../services/cliente/cliente.service";
 import {Cliente} from "../../../../models/cliente/cliente.model";
 
@@ -9,7 +9,7 @@ import {Cliente} from "../../../../models/cliente/cliente.model";
   styleUrl: './home-cliente.component.css'
 })
 export class HomeClienteComponent {
-  constructor(private loginService: LoginService,
+  constructor(private loginService: AuthService,
               private clienteService: ClienteService) {
   }
 

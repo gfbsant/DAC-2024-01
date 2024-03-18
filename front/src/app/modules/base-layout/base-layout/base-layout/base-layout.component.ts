@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Usuario} from "../../../../models/usuario/usuario.model";
-import {LoginService} from "../../../../services/login/login.service";
+import {AuthService} from "../../../../services/auth/auth.service";
 
 @Component({
   selector: 'app-base-layout',
@@ -10,7 +10,7 @@ import {LoginService} from "../../../../services/login/login.service";
 })
 export class BaseLayoutComponent {
 
-  constructor(private loginService: LoginService,
+  constructor(private loginService: AuthService,
               private router: Router,
               route: ActivatedRoute) {
   };

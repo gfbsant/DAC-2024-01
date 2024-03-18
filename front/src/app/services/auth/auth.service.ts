@@ -5,11 +5,12 @@ import {Login} from "../../models/login/login.model";
 import {Usuario} from "../../models/usuario/usuario.model";
 
 const LS_CHAVE: string = "usuarioLogado";
+const AUTH_API = 'http://localhost:8080/api/auth/';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
 
   private usuario?: Usuario;
 
@@ -61,5 +62,9 @@ export class LoginService {
         this.logarUsuario = usuario;
       }
     });
+  }
+
+  register(value: any) {
+     return this.usuarioService.register(value);
   }
 }

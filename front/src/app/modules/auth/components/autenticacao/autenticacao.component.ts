@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {LoginService} from "../../../../services/login/login.service";
+import {AuthService} from "../../../../services/auth/auth.service";
 
 @Component({
   selector: 'app-autenticacao',
@@ -9,7 +9,7 @@ import {LoginService} from "../../../../services/login/login.service";
 })
 export class AutenticacaoComponent {
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: AuthService) {}
 
   isLogin : boolean = true;
 

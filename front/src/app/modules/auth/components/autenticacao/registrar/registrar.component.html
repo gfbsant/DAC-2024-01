@@ -1,26 +1,51 @@
+<ng-template #confirmationModal let-modal>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationModalLabel">Confirmação</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Confirme os dados:<br>
+        <pre>{{ formRegistro.value | json }}</pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="confirmSubmit()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
 <div class="container my-5">
   <div class="row">
     <div class="col-12">
+      <button type="button" class="btn-close position-absolute top-0 end-0 mt-5 me-5" aria-label="Close"
+              (click)="goBack()"></button>
       <h1 class="text-primary mb-4">Olá, venha se juntar ao BanTADS!</h1>
       <p class="text-black col-md-5">Gerencie suas finanças de forma simples com o Internet Banking do TADS. Vamos
         começar?</p>
     </div>
   </div>
-  <form #formRegistro="ngForm" (ngSubmit)="onSubmit(formRegistro)">
+  <form #formRegistro="ngForm" method="post">
+
     <div class="row">
       <div class="col-12" id="dados">
         <h3>1 - Insira seus dados</h3>
         <div class="row">
           <div class="form-floating col-sm-6 mb-3">
             <input type="text" class="form-control" id="nome" placeholder="Nome completo"
-                   ngModel name="nome" required #nomeCtrl="ngModel">
+                   ngModel name="nome" required minlength="2" #nomeCtrl="ngModel">
             <label for="nome">Nome</label>
             <i *ngIf="nomeCtrl.valid && nomeCtrl.touched"
                class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
             <i *ngIf="nomeCtrl.invalid && nomeCtrl.touched"
                class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
-            <div *ngIf="nomeCtrl.invalid && nomeCtrl.touched" class="text-danger">
+            <div *ngIf="nomeCtrl.invalid && nomeCtrl.touched && nomeCtrl.value.length === 0" class="text-danger">
               Nome é obrigatório.
+            </div>
+            <div *ngIf="nomeCtrl.hasError('minlength')" class="text-danger">
+              O nome deve ter no mínimo 2 caracteres.
             </div>
           </div>
           <div class="form-floating col-sm-6 mb-3">
@@ -39,7 +64,7 @@
         <div class="row">
           <div class="form-floating col-sm-6 mb-3">
             <input type="text" class="form-control" id="cpf" placeholder="Precisamos de um CPF válido."
-                   inputmode="numeric" mask="000.000.000-00" ngModel name="cpfCtrl" required cpf #cpfCtrl="ngModel">
+                   [(ngModel)]="cpf" mask="000.000.000-00" inputmode="numeric" name="cpf" required cpf #cpfCtrl="ngModel">
 
             <label for="cpf" class="form-label">CPF</label>
             <i *ngIf="cpfCtrl.valid && cpfCtrl.touched"
@@ -52,7 +77,7 @@
           </div>
           <div class="form-floating col-sm-6 mb-3">
             <input type="tel" class="form-control" id="telefone" placeholder="(XX) XXXXX-XXXX" mask="(00) 0 0000 0000"
-                   ngModel name="telefone" required telefone #telefoneCtrl="ngModel">
+                   [(ngModel)]="telefone"  ngModel name="telefone" required telefone #telefoneCtrl="ngModel">
             <label for="telefone" class="form-label">Telefone</label>
             <i *ngIf="telefoneCtrl.valid && telefoneCtrl.touched"
                class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
@@ -63,7 +88,8 @@
             </div>
           </div>
           <div class="form-floating col-sm-6 mb-3">
-            <input type="text" class="form-control" id="salario" placeholder="Salário atual" ngModel name="salario"
+            <input type="text" inputmode="numeric" (keyup)="transformSalary(salarioCtrl)" [(ngModel)]="formattedSalary"
+                   class="form-control" id="salario" placeholder="Salário atual" numeric name="salario"
                    required salario #salarioCtrl="ngModel">
             <label for="salario" class="form-label">Salário</label>
             <i *ngIf="salarioCtrl.valid && salarioCtrl.touched"
@@ -78,48 +104,97 @@
         <div class="row">
           <div class="form-floating col-sm-6 mb-3">
             <input type="text" class="form-control" id="cep" placeholder="CEP" inputmode="numeric" mask="00000-000"
-                   ngModel name="cep" required cep #cepCtrl="ngModel">
+                   [(ngModel)]="cep" name="cep" required cep #cepCtrl="ngModel" (blur)="searchCep(this.cep);">
             <label for="cep" class="form-label">CEP</label>
-            <i *ngIf="cepCtrl.valid && cepCtrl.touched"
+            <i *ngIf="cepCtrl.valid && cepCtrl.touched && !cepError"
                class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
-            <i *ngIf="cepCtrl.invalid && cepCtrl.touched"
+            <i *ngIf="cepCtrl.invalid && cepCtrl.touched || cepError"
                class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
-            <div *ngIf="cepCtrl.invalid && cepCtrl.touched" class="text-danger">
-              Informe um CEP válido.
+            <div *ngIf="cepError" class="text-danger">{{ cepError }}</div>
+          </div>
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="logradouro" #logradouroCtrl="ngModel" placeholder="Logradouro"
+                   [(ngModel)]="logradouro" name="logradouro" required>
+            <label for="logradouro" class="form-label">Logradouro</label>
+            <i *ngIf="logradouroCtrl.valid && logradouroCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <i *ngIf="logradouroCtrl.invalid && logradouroCtrl.touched"
+               class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <div *ngIf="logradouroCtrl.invalid && logradouroCtrl.touched" class="text-danger">
+              Informe um endereço válido.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="form-floating col-sm-6 mb-3">
+            <input type="text" class="form-control" id="numero" placeholder="Número"
+                   [(ngModel)]="numero" name="numero" numeric ngModel #numCtrl="ngModel" required pattern="^[0-9]*$">
+            <label for="numero" class="form-label">Número</label>
+            <i *ngIf="numCtrl.valid && numCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <i *ngIf="numCtrl.invalid && numCtrl.touched"
+               class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <div *ngIf="numCtrl.invalid && numCtrl.touched" class="text-danger">
+              Informe um número válido.
             </div>
           </div>
           <div class="form-floating col-sm-6 mb-3">
-            <input type="text" class="form-control" id="logradouro" placeholder="Logradouro" ngModel name="telefone"
-                   required telefone #telefoneCtrl="ngModel">
-            <label for="logradouro" class="form-label">Logradouro</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-floating col-sm-6 mb-3">
-            <input type="text" class="form-control" id="numero" placeholder="Número" >
-            <label for="numero" class="form-label">Número</label>
-          </div>
-          <div class="form-floating col-sm-6 mb-3">
-            <input type="text" class="form-control" id="complemento" placeholder="Complemento">
+            <input type="text" class="form-control" id="complemento" #complementoCtrl="ngModel"
+                   placeholder="Complemento" [(ngModel)]="complemento" name="complemento">
             <label for="complemento" class="form-label">Complemento</label>
+            <i *ngIf="complementoCtrl.valid && complementoCtrl.touched && !cepError"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
           </div>
         </div>
 
         <div class="row">
           <div class="form-floating col-sm-6 mb-3">
-            <input type="text" class="form-control" id="cidade" placeholder="Cidade">
+            <input type="text" class="form-control" id="cidade" placeholder="Cidade"
+                   [(ngModel)]="localidade" name="localidade" required #cidadeCtrl="ngModel">
             <label for="cidade" class="form-label">Cidade</label>
+            <i *ngIf="cidadeCtrl.valid && cidadeCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <i *ngIf="cidadeCtrl.invalid && cidadeCtrl.touched"
+               class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <div *ngIf="cidadeCtrl.invalid && cidadeCtrl.touched" class="text-danger">
+              Informe uma cidade válida.
+            </div>
           </div>
           <div class="form-floating col-sm-6 mb-3">
-            <input type="text" class="form-control" id="estado" placeholder="Estado">
-            <label for="estado" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="uf" name="uf" placeholder="Estado" #ufCtrl="ngModel"
+                   [(ngModel)]="uf" required>
+            <label for="uf" class="form-label">Estado</label>
+            <i *ngIf="ufCtrl.valid && ufCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <i *ngIf="ufCtrl.invalid && ufCtrl.touched"
+               class="bi bi-x-lg text-danger position-absolute end-0 top-50 translate-middle-y me-3"></i>
+            <div *ngIf="ufCtrl.invalid && ufCtrl.touched" class="text-danger">
+              Informe um estado válido.
+            </div>
+          </div>
+          <div class="form-floating col-sm-6 mb-3">
+            <input [(ngModel)]="bairro" type="text" class="form-control" id="bairro" placeholder="Bairro"
+                   #bairroCtrl="ngModel"
+                   name="bairro" required>
+            <label for="bairro" class="form-label">Bairro</label>
+            <i *ngIf="bairroCtrl.valid && bairroCtrl.touched"
+               class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
+
+            <div *ngIf="bairroCtrl.invalid && bairroCtrl.touched" class="text-danger">
+              Informe um bairro válido.
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="mt-4">
-      <button type="submit" class="btn btn-primary" [disabled]="!formRegistro.valid">Enviar</button>
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary" [disabled]="!formRegistro.valid" (click)="openConfirmationModal()">Enviar</button>      </div>
+      <div class="text-center mt-5">
+        Já possui um cadastro? <a routerLink="/autenticacao"> Faça seu login</a>
+      </div>
     </div>
   </form>
 </div>
+
+

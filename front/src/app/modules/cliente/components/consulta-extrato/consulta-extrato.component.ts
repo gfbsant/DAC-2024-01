@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransacaoService } from '../../../../services/transacao/transacao.service';
 import { Transacao } from '../../../../models/transacao/transacao.model';
-import { LoginService } from '../../../../services/login/login.service';
+import { AuthService } from '../../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-consulta-extrato',
@@ -12,7 +12,7 @@ export class ConsultaExtratoComponent implements OnInit {
 
   transacoes: Transacao[] = [];
 
-  constructor(private transacaoService: TransacaoService, private loginService: LoginService) { }
+  constructor(private transacaoService: TransacaoService, private loginService: AuthService) { }
 
   ngOnInit(): void {
     this.carregarTransacoes();
