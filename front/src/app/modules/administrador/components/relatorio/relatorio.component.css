@@ -1,0 +1,34 @@
+.table{
+    width: 250px; 
+    height: 100%;
+    border: 2px solid black;
+}
+.thead{
+    width: 100%;
+    font-size: xx-large;
+    border: 1px solid black;
+}
+.aa{
+    justify-content: center;
+    
+}
+#titulo{
+    text-align: center;
+}
+#aaaa{
+    border: 2px black;
+}   
+
+table {
+    border-collapse: collapse; /* CSS2 */
+    text-align: center;
+}
+ 
+td {
+    border: 1px solid black;
+}
+ 
+th {
+    border: 1px solid black;
+    color:#ffffff;
+}

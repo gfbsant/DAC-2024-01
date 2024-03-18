@@ -6,34 +6,35 @@ import {RegistrarComponent} from "./modules/auth/components/autenticacao/registr
 import {ConsultaExtratoComponent} from "./modules/cliente/components/consulta-extrato/consulta-extrato.component";
 import {HomeClienteComponent} from "./modules/cliente/components/home-cliente/home-cliente.component";
 import {HomeGerenteComponent} from "./modules/gerente/components/home-gerente/home-gerente.component";
+import { RelatorioComponent } from './modules/administrador/components/relatorio/relatorio.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/autenticacao', pathMatch: 'full'},
   {path: 'autenticacao', component: AutenticacaoComponent},
   {path: 'gerente', redirectTo: 'gerente/home-gerente', },
   {path: 'cliente', redirectTo: 'cliente/home-cliente'},
-
   {path: 'registrar', component: RegistrarComponent},
   {
     path: 'cliente/home-cliente',
     component: HomeClienteComponent,
     /*    canActivate: [authGuard],
-        data: {
+    data: {
           role: 'CLIENTE',
         },*/
   },
   {path: 'cliente/editar-perfil', component: EditarPerfilComponent},
   {path: 'cliente/consulta-extrato', component: ConsultaExtratoComponent},
   {
-    path: 'gerente/home-gerente',
-    component: HomeGerenteComponent,
-    /*    canActivate: [authGuard],
+        path: 'gerente/home-gerente',
+        component: HomeGerenteComponent,
+        /*    canActivate: [authGuard],
         data: {
           role: 'CLIENTE',
         },*/
   },
+  {path: 'administrador/relatorio', component: RelatorioComponent}
 ];
-
+    
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

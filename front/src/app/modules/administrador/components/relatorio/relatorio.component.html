@@ -1,0 +1,26 @@
+<div id="aa">
+    <h1 id="titulo" class="col-sm-12 mb-3">Relatorio de Clientes</h1>  
+</div>
+<div class="aaaa">
+    <table id="table" class="bg-white col-sm-12 mb-3">
+        <thead id="thead" class="bg-secondary">
+          <tr>
+            <th>Nome do Cliente</th>
+            <th>CPF do Cliente</th>
+            <th>Limite do Cliente</th>
+            <th>Nome do Gerente</th>
+            <th>Saldo do Cliente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes">
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.cpf }}</td>
+            <td>R${{ cliente.salario | number:'1.2-2'}}</td>
+            <td> João Silva </td>
+            <td>R${{ cliente.saldo | number:'1.2-2'}}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>

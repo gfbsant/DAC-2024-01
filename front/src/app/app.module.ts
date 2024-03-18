@@ -14,6 +14,7 @@ import {registerLocaleData} from "@angular/common";
 import localePt from '@angular/common/locales/pt';
 import {NgxViacepModule} from "@brunoc/ngx-viacep";
 import { NumericDirective } from './shared/directives/numeric.directive';
+import { AdministradorModule } from './modules/administrador/administrador.module';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -21,7 +22,7 @@ registerLocaleData(localePt, 'pt-BR');
   declarations: [
     AppComponent,
     RegistrarComponent,
-    NumericDirective,
+    NumericDirective
   ],
   imports: [
     BrowserModule,
@@ -32,6 +33,7 @@ registerLocaleData(localePt, 'pt-BR');
     NgxMaskDirective,
     FormsModule,
     GerenteModule,
+    AdministradorModule,
     NgxViacepModule
   ],
   providers: [

@@ -25,6 +25,7 @@ export class HomeGerenteComponent {
 
   aprovarCadastro(cliente: Cliente) {
     this.clienteService.aprovarCadastro(cliente);
+    alert("Sua senha foi enviada para o seu email!");
   }
 
   recusarCadastro(cliente: Cliente) {
