@@ -13,7 +13,7 @@
     <tr *ngFor="let cliente of clientesCadastroNegado">
       <td>{{ cliente.nome }}</td>
       <td>{{ cliente.cpf }}</td>
-      <td>{{ cliente.salario }}</td>
+      <td>R$ {{ cliente.salario | number:'1.2-2' }}</td>
       <td>
         <button type="submit" class="btn btn-success me-1" (click)="aprovarCadastro(cliente)">Aprovar</button>
         <button type="submit" class="btn btn-danger" (click)="recusarCadastro(cliente)">Recusar</button>

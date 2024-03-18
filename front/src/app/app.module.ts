@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -10,6 +10,10 @@ import {BaseLayoutModule} from "./modules/base-layout/base-layout/base-layout.mo
 import {NgxMaskDirective, provideNgxMask} from "ngx-mask";
 import {RegistrarComponent} from "./modules/auth/components/autenticacao/registrar/registrar.component";
 import {GerenteModule} from "./modules/gerente/gerente.module";
+import {registerLocaleData} from "@angular/common";
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -26,7 +30,10 @@ import {GerenteModule} from "./modules/gerente/gerente.module";
     FormsModule,
     GerenteModule
   ],
-  providers: [provideNgxMask({})],
+  providers: [
+    provideNgxMask({}, ),
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
