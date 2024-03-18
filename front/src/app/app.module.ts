@@ -10,11 +10,28 @@ import {BaseLayoutModule} from "./modules/base-layout/base-layout/base-layout.mo
 import {NgxMaskDirective, provideNgxMask} from "ngx-mask";
 import {RegistrarComponent} from "./modules/auth/components/autenticacao/registrar/registrar.component";
 import {GerenteModule} from "./modules/gerente/gerente.module";
-import {registerLocaleData} from "@angular/common";
+import {CommonModule, registerLocaleData} from "@angular/common";
 import localePt from '@angular/common/locales/pt';
 import {NgxViacepModule} from "@brunoc/ngx-viacep";
-import { NumericDirective } from './shared/directives/numeric.directive';
-import { AdministradorModule } from './modules/administrador/administrador.module';
+import {NumericDirective} from './shared/directives/numeric.directive';
+import {AdministradorModule} from './modules/administrador/administrador.module';
+import {
+  TransferenciaNewComponent
+} from "./modules/cliente/components/transferencia/transferencia-new/transferencia-new.component";
+import {EditarPerfilComponent} from "./modules/cliente/components/editar-perfil/editar-perfil.component";
+import {AutenticacaoComponent} from "./modules/auth/components/autenticacao/autenticacao.component";
+import {ConsultaExtratoComponent} from "./modules/cliente/components/consulta-extrato/consulta-extrato.component";
+import {HomeClienteComponent} from "./modules/cliente/components/home-cliente/home-cliente.component";
+import {TransferenciaComponent} from "./modules/cliente/components/transferencia/transferencia.component";
+import {
+  TransferenciaQuantiaComponent
+} from "./modules/cliente/components/transferencia/transferencia-quantia/transferencia-quantia.component";
+import {
+  TransferenciaConfirmComponent
+} from "./modules/cliente/components/transferencia/transferencia-confirm/transferencia-confirm.component";
+import {
+  TransferenciaDoneComponent
+} from "./modules/cliente/components/transferencia/transferencia-done/transferencia-done.component";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -34,11 +51,12 @@ registerLocaleData(localePt, 'pt-BR');
     FormsModule,
     GerenteModule,
     AdministradorModule,
-    NgxViacepModule
+    NgxViacepModule,
+    CommonModule,
   ],
   providers: [
-    provideNgxMask({}, ),
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    provideNgxMask({},),
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,23 @@
+<div class="container">
+  <router-outlet></router-outlet>
+  <h2 class="my-4">Transferir dinheiro</h2>
+  <p>Escolha uma conta para transferir</p>
+  <div class="mb-3">
+    <button class="btn btn-primary" (click)="newTransaction()" >
+      <i class="bi bi-plus"></i>
+      Nova transferência
+    </button>
+  </div>
+  <div class="list-group">
+    <h2 class="my-sm-4" [ngStyle]="{'font-size': '1.5em'}">Transferir novamente</h2>
+    <a *ngFor="let cliente of clientes" href="/cliente/transferencia/quantia"
+       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">
+          <i class="bi bi-person-circle"></i> {{ cliente.nome }}<br>
+        </div>
+        CPF: {{ cliente.cpf }}
+      </div>
+    </a>
+  </div>
+</div>

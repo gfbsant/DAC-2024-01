@@ -64,7 +64,8 @@
         <div class="row">
           <div class="form-floating col-sm-6 mb-3">
             <input type="text" class="form-control" id="cpf" placeholder="Precisamos de um CPF válido."
-                   [(ngModel)]="cpf" mask="000.000.000-00" inputmode="numeric" name="cpf" required cpf #cpfCtrl="ngModel">
+                   [(ngModel)]="cpf" mask="000.000.000-00" inputmode="numeric" name="cpf" required cpf
+                   #cpfCtrl="ngModel">
 
             <label for="cpf" class="form-label">CPF</label>
             <i *ngIf="cpfCtrl.valid && cpfCtrl.touched"
@@ -77,7 +78,7 @@
           </div>
           <div class="form-floating col-sm-6 mb-3">
             <input type="tel" class="form-control" id="telefone" placeholder="(XX) XXXXX-XXXX" mask="(00) 0 0000 0000"
-                   [(ngModel)]="telefone"  ngModel name="telefone" required telefone #telefoneCtrl="ngModel">
+                   [(ngModel)]="telefone" ngModel name="telefone" required telefone #telefoneCtrl="ngModel">
             <label for="telefone" class="form-label">Telefone</label>
             <i *ngIf="telefoneCtrl.valid && telefoneCtrl.touched"
                class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
@@ -189,7 +190,10 @@
         </div>
       </div>
       <div class="mt-4">
-        <button type="submit" class="btn btn-primary" [disabled]="!formRegistro.valid" (click)="openConfirmationModal()">Enviar</button>      </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!formRegistro.valid"
+                (click)="openConfirmationModal()">Enviar
+        </button>
+      </div>
       <div class="text-center mt-5">
         Já possui um cadastro? <a routerLink="/autenticacao"> Faça seu login</a>
       </div>

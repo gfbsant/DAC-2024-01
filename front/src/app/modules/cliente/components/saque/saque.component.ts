@@ -23,4 +23,7 @@ export class SaqueComponent {
     return cliente ? cliente : undefined;
   }
 
+  sacar() {
+
+  }
 }

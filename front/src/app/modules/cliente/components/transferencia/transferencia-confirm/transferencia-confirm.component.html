@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card mx-auto my-5" style="max-width: 400px;">
+    <div class="card-header text-center">
+      <h4 class="card-title">Confira se está tudo correto</h4>
+    </div>
+    <div class="card-body">
+      <div class="text-center mb-4">
+        <div class="mb-2">
+          <strong>Transferindo para</strong><br>
+          <span>JOHN DOE</span><br>
+          CPF: ***.549.049-**
+        </div>
+          <i class="bi bi-person-circle h1"></i>
+
+      </div>
+      <h2 class="text-center my-4">R$ 100,00</h2>
+      <div class="text-center my-4">
+        <p>Transferencia para Banco TADS.<br>Número da conta: 00598401</p>
+      </div>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" [routerLink]="['/cliente/transferencia/done']" type="button">Transferir</button>
+        <button class="btn btn-secondary" type="button" [routerLink]="['/cliente/transferencia/quantia']">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
