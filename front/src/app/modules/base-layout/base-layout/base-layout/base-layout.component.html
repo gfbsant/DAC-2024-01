@@ -1,6 +1,6 @@
 <nav class="navbar bg-secondary sticky-top mb-5 p-1" *ngIf="usuario && usuario.perfil ">
   <div class="container-fluid">
-    <a class="navbar-brand fs-3" [routerLink]="usuario.perfil.includes('CLIENTE') ? '/cliente' : ''"
+    <a class="navbar-brand fs-3" [routerLink]="getUsuarioPerfil()"
        style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color:#ffffff;" >
       <i class="bi bi-bank mx-1"></i>
       BANTADS
@@ -43,10 +43,32 @@
     </ul>
 
     <ul *ngIf="usuario.perfil.includes('GERENTE')" class="nav gap-3">
-          <!--to-do-->
+      <button *ngIf="!isCurrentRoute('/gerente/consultar-cliente')" class="btn btn-outline-light btn-sm"
+              (click)="goConsultarCliente()">Consultar Cliente
+      </button>
+      <button *ngIf="isCurrentRoute('/gerente/consultar-cliente')" class="btn btn-outline-light active btn-sm"
+              aria-current="page" (click)="goConsultarCliente()">Consultar Cliente
+      </button>
+
+      <button *ngIf="!isCurrentRoute('/gerente/listar-clientes')" class="btn btn-outline-light btn-sm"
+              (click)="goListarClientes()">Listar Clientes
+      </button>
+      <button *ngIf="isCurrentRoute('/gerente/listar-clientes')" class="btn btn-outline-light active btn-sm"
+              aria-current="page" (click)="goListarClientes()">Listar Clientes
+      </button>
+
+      <button *ngIf="!isCurrentRoute('/gerente/listar-top3-clientes')" class="btn btn-outline-light btn-sm"
+              (click)="goListarTop3Clientes()">Top 3 Clientes
+      </button>
+      <button *ngIf="isCurrentRoute('/gerente/listar-top3-clientes')" class="btn btn-outline-light active btn-sm"
+              aria-current="page" (click)="goListarTop3Clientes()">Top 3 Clientes
+      </button>
+      <button class="btn btn-danger btn-sm"
+              (click)="logout()">Sair
+      </button>
     </ul>
 
-    <ul *ngIf="usuario.perfil.includes('ADM')" class="nav gap-3">
+    <ul *ngIf="usuario.perfil.includes('ADMINISTRADOR')" class="nav gap-3">
       <!--to-do-->
     </ul>
   </div>

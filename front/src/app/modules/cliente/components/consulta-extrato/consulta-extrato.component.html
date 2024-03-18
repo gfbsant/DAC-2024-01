@@ -1,5 +1,7 @@
-<div *ngFor="let transacao of transacoes" [ngClass]="{'entrada': transacao.tipo === 'entrada', 'saida': transacao.tipo === 'saida'}">
-  <span>{{ transacao.data | date: 'dd/MM/yyyy' }}</span>
-  <span>{{ transacao.descricao }}</span>
-  <span>{{ transacao.valor | currency }}</span>
-</div>
+<ng-container *ngIf="transacoes">
+  <div *ngFor="let transacao of transacoes" [ngClass]="{'entrada': transacao.tipo === 'entrada', 'saida': transacao.tipo === 'saida'}">
+    <span>{{ transacao.data | date: 'dd/MM/yyyy' }}</span>
+    <span>{{ transacao.descricao }}</span>
+    <span>{{ transacao.valor | currency }}</span>
+  </div>
+</ng-container>

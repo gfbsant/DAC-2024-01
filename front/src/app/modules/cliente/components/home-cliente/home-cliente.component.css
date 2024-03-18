@@ -1,4 +1,4 @@
-.cartao {
+.card {
   background-color: white; /* Cor de fundo do cartão */
   border: none;
   border-radius: 8px; /* Bordas arredondadas */
@@ -6,9 +6,9 @@
   padding: 40px;
   margin: 20px;
 }
-.cartao h1, .cartao h2 {
+.card h1, .card h2 {
   color: #333; /* Cor de texto */
 }
-.cartao h1 {
+.card h1 {
   margin-bottom: 20px; /* Espaçamento abaixo do h1 */
 }

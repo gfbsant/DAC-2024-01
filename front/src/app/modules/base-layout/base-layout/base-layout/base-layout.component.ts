@@ -51,4 +51,29 @@ export class BaseLayoutComponent {
   goConsultaExtrato() {
     this.router.navigate(['/cliente/consulta-extrato']);
   };
+
+  getUsuarioPerfil() : string | any[] | null | undefined {
+    switch (this.usuario?.perfil) {
+      case 'ADMINISTRADOR':
+        return '/administrador';
+      case 'CLIENTE':
+        return '/cliente';
+      case 'GERENTE':
+        return '/gerente';
+      default:
+        return '/login';
+    }
+  }
+
+  goConsultarCliente() {
+    this.router.navigate([this.getUsuarioPerfil(), '/gerente/consultar-cliente']);
+  }
+
+  goListarClientes() {
+    this.router.navigate([this.getUsuarioPerfil(), '/gerente/listar-clientes']);
+  }
+
+  goListarTop3Clientes() {
+    this.router.navigate([this.getUsuarioPerfil(), '/gerente/listar-top3-clientes']);
+  }
 }

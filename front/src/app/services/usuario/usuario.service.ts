@@ -12,21 +12,13 @@ export class UsuarioService {
 
   usuarios: Usuario[] = [
     new Usuario(1,
-      'John Doe',
       'johndoe@gmail.com',
-      '123456789',
       'CLIENTE',
-      '1234567890',
-      new Endereco(
-        1,
-        'Rua Dr. Alcides Vieira Arcoverde',
-        '1225',
-        'Casa',
-        'Bairro Alto',
-        'Curitiba',
-        'PR',
-        '82820-540'),
-      'password'),
+      '123456'),
+    new Usuario(2,
+      'alexmorgan@gmail.com',
+      'GERENTE',
+      '123456')
   ];
 
   constructor() {

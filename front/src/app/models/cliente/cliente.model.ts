@@ -10,6 +10,7 @@ export class Cliente {
   salario: number;
   senha: string;
   saldo: number;
+  situacaoCadastral: 'APROVADO' | 'RECUSADO' | 'PENDENTE' = 'PENDENTE';
 
   constructor(id: number,
               nome: string,
@@ -19,7 +20,8 @@ export class Cliente {
               endereco: Endereco,
               salario: number,
               senha: string,
-              saldo: number) {
+              saldo: number,
+              situacaoCadastral: 'APROVADO' | 'RECUSADO' | 'PENDENTE' = 'PENDENTE') {
     this.id = id;
     this.nome = nome;
     this.cpf = cpf;
@@ -29,5 +31,6 @@ export class Cliente {
     this.salario = salario;
     this.senha = senha;
     this.saldo = saldo;
+    this.situacaoCadastral = situacaoCadastral;
   }
 }

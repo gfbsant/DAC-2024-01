@@ -1,0 +1,28 @@
+.container {
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  margin: auto;
+}
+
+.home-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: auto;
+}
+
+.home-table th, .home-table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 8px;
+}
+
+.home-table th {
+  color: white;
+}
+
+.home-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.home-table tr:hover {background-color: #ddd;}
+
+

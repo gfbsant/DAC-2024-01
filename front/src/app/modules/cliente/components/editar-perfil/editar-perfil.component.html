@@ -29,7 +29,10 @@
         <label for="salario">Salário:</label>
         <input type="number" class="form-control" id="salario" [(ngModel)]="perfil.salario" name="salario">
       </div>
-      <button type="submit" class="btn btn-primary" (click)="novoSaldo()">Salvar</button>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-primary me-1" (click)="novoSaldo()">Salvar</button>
+        <button type="submit" class="btn btn-secondary" (click)="history.go(-1)">Voltar</button>
+      </div>
     </form>
   </div>
-  
+

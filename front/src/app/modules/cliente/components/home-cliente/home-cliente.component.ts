@@ -1,14 +1,14 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {LoginService} from "../../../../services/login/login.service";
-import {Cliente} from "../../../../models/cliente/cliente.model";
 import {ClienteService} from "../../../../services/cliente/cliente.service";
+import {Cliente} from "../../../../models/cliente/cliente.model";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  selector: 'app-home-cliente',
+  templateUrl: './home-cliente.component.html',
+  styleUrl: './home-cliente.component.css'
 })
-export class HomeComponent {
+export class HomeClienteComponent {
   constructor(private loginService: LoginService,
               private clienteService: ClienteService) {
   }
@@ -22,6 +22,4 @@ export class HomeComponent {
     let cliente = this.clienteService.getClienteById(1);
     return cliente ? cliente : undefined;
   }
-
-
 }

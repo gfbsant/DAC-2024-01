@@ -1,4 +1,4 @@
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './editar-perfil.component.css'
 })
 export class EditarPerfilComponent implements OnInit {
+
+  protected readonly history = history;
 
   perfil = {
     nome: 'John Doe',
