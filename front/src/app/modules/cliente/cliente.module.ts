@@ -16,6 +16,7 @@ import {
   TransferenciaConfirmComponent
 } from "./components/transferencia/transferencia-confirm/transferencia-confirm.component";
 import {TransferenciaDoneComponent} from "./components/transferencia/transferencia-done/transferencia-done.component";
+import { DepositarComponent } from './depositar/depositar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {TransferenciaDoneComponent} from "./components/transferencia/transferenc
     TransferenciaQuantiaComponent,
     TransferenciaConfirmComponent,
     TransferenciaDoneComponent,
-    TransferenciaNewComponent
+    TransferenciaNewComponent,
+    DepositarComponent
   ],
   imports: [
     CommonModule,
