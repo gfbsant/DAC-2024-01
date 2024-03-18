@@ -7,6 +7,8 @@ import {ConsultaExtratoComponent} from "./modules/cliente/components/consulta-ex
 import {HomeClienteComponent} from "./modules/cliente/components/home-cliente/home-cliente.component";
 import {HomeGerenteComponent} from "./modules/gerente/components/home-gerente/home-gerente.component";
 import { RelatorioComponent } from './modules/administrador/components/relatorio/relatorio.component';
+import { SaqueComponent } from './modules/cliente/components/saque/saque.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/autenticacao', pathMatch: 'full'},
@@ -32,7 +34,9 @@ const routes: Routes = [
           role: 'CLIENTE',
         },*/
   },
+  {path: 'cliente/saque', component: SaqueComponent},  
   {path: 'administrador/relatorio', component: RelatorioComponent}
+
 ];
     
 @NgModule({

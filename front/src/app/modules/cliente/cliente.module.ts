@@ -6,13 +6,15 @@ import { AutenticacaoComponent } from '../auth/components/autenticacao/autentica
 import {RouterLink} from "@angular/router";
 import { ConsultaExtratoComponent } from './components/consulta-extrato/consulta-extrato.component';
 import { HomeClienteComponent } from './components/home-cliente/home-cliente.component';
+import { SaqueComponent } from './components/saque/saque.component';
 
 @NgModule({
   declarations: [
     EditarPerfilComponent,
     AutenticacaoComponent,
     ConsultaExtratoComponent,
-    HomeClienteComponent
+    HomeClienteComponent,
+    SaqueComponent
   ],
     imports: [
         CommonModule,
