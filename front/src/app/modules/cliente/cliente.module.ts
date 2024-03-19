@@ -9,14 +9,10 @@ import {HomeClienteComponent} from './components/home-cliente/home-cliente.compo
 import {SaqueComponent} from './components/saque/saque.component';
 import {TransferenciaNewComponent} from "./components/transferencia/transferencia-new/transferencia-new.component";
 import {TransferenciaComponent} from "./components/transferencia/transferencia.component";
-import {
-  TransferenciaQuantiaComponent
-} from "./components/transferencia/transferencia-quantia/transferencia-quantia.component";
-import {
-  TransferenciaConfirmComponent
-} from "./components/transferencia/transferencia-confirm/transferencia-confirm.component";
+import {TransferenciaQuantiaComponent} from "./components/transferencia/transferencia-quantia/transferencia-quantia.component";
+import {TransferenciaConfirmComponent} from "./components/transferencia/transferencia-confirm/transferencia-confirm.component";
 import {TransferenciaDoneComponent} from "./components/transferencia/transferencia-done/transferencia-done.component";
-import { DepositarComponent } from './depositar/depositar.component';
+import {DepositarComponent} from "./components/depositar/depositar/depositar.component";
 
 @NgModule({
   declarations: [

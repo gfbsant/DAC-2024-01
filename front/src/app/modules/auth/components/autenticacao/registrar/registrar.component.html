@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="form-floating col-sm-6 mb-3">
-            <input type="text" inputmode="numeric" (keyup)="transformSalary(salarioCtrl)" [(ngModel)]="formattedSalary"
+            <input type="text" inputmode="numeric" (keyup)="transformSalary(salarioCtrl)" [(ngModel)]="formattedSalario"
                    class="form-control" id="salario" placeholder="Salário atual" numeric name="salario"
                    required salario #salarioCtrl="ngModel">
             <label for="salario" class="form-label">Salário</label>
@@ -105,7 +105,7 @@
         <div class="row">
           <div class="form-floating col-sm-6 mb-3">
             <input type="text" class="form-control" id="cep" placeholder="CEP" inputmode="numeric" mask="00000-000"
-                   [(ngModel)]="cep" name="cep" required cep #cepCtrl="ngModel" (blur)="searchCep(this.cep);">
+                   [(ngModel)]="cep" name="cep" required cep #cepCtrl="ngModel" (blur)="searchCep();">
             <label for="cep" class="form-label">CEP</label>
             <i *ngIf="cepCtrl.valid && cepCtrl.touched && !cepError"
                class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>

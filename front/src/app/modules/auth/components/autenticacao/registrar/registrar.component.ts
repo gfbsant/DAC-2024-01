@@ -1,12 +1,12 @@
-import {Component, ViewChild} from '@angular/core';
-import {NgForm, NgModel} from "@angular/forms";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, NgForm, NgModel, Validators} from "@angular/forms";
 import {Usuario} from "../../../../../models/usuario/usuario.model";
 import {Router} from '@angular/router';
-import {NgxViacepService} from "@brunoc/ngx-viacep";
 import {CurrencyPipe} from "@angular/common";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NumericDirective} from "../../../../../shared/directives/numeric.directive";
 import {AuthService} from "../../../../../services/auth/auth.service";
+import {BuscaCepService} from "../../../../../services/buscacep/busca-cep.service";
 
 
 @Component({
@@ -30,59 +30,63 @@ export class RegistrarComponent {
   bairro: string | null = null;
   uf: string | null = null;
   cepError: string | null = null;
-  formattedSalary: string | null;
-  salary: number;
+  formattedSalario: string | null;
+  salario: number;
   complemento: string | null = null;
   numero: string | null = null;
   cpf: string | null = null;
   telefone: string | null = null;
   private modalRef: any;
 
+
   constructor(
     private router: Router,
-    private viacep: NgxViacepService,
     private currencyPipe: CurrencyPipe,
     private modalService: NgbModal,
     private authService: AuthService,
+    private buscaCep: BuscaCepService,
   ) {
-    this.formattedSalary = 'R$ 0,00';
-    this.salary = 0;
+    this.formattedSalario = 'R$ 0,00';
+    this.salario = 0;
   }
-
 
   goBack() {
     this.modalRef.close();
     this.router.navigate(['/autenticacao']);
   }
 
-
-  searchCep(cep: string | null) {
-    if (cep != null) {
-      this.viacep.buscarPorCep(cep).subscribe((endereco) => {
-          this.cep = endereco.cep;
-          this.logradouro = endereco.logradouro;
-          this.localidade = endereco.localidade;
-          this.bairro = endereco.bairro;
-          this.uf = endereco.uf;
-          this.cepError = null;
-          this.logradouroCtrl.control.markAsTouched();
-          this.cidadeCtrl.control.markAsTouched();
-          this.ufCtrl.control.markAsTouched();
-          this.bairroCtrl.control.markAsTouched();
-        },
-        (error) => {
-          this.cepError = 'CEP não encontrado.';
-        },
-      );
+  async searchCep() {
+    if (this.formRegistro.form.get('cep')!.valid) {
+      try {
+        const cep = this.formRegistro.form.get('cep')!.value;
+        const resultado = await this.buscaCep.buscaCep(cep);
+        this.cepError = null;
+        this.formRegistro.form.patchValue({
+          logradouro: resultado.street,
+          bairro: resultado.neighborhood,
+          localidade: resultado.city,
+          uf: resultado.state
+        });
+        this.formRegistro.form.get('logradouro')!.enable();
+      } catch (error) {
+        this.cepError = 'CEP não encontrado';
+        console.error(error);
+      }
+      this.cepError = null;
+      this.logradouroCtrl.control.markAsTouched();
+      this.cidadeCtrl.control.markAsTouched();
+      this.ufCtrl.control.markAsTouched();
+      this.bairroCtrl.control.markAsTouched();
     }
   }
 
+
   transformSalary(element: NgModel) {
-    if (!this.formattedSalary || this.formattedSalary === 'R$ 0,00') {
-      this.formattedSalary = '0';
+    if (!this.formattedSalario || this.formattedSalario === 'R$ 0,00') {
+      this.formattedSalario = '0';
     }
-    this.salary = parseFloat(this.formattedSalary.replace(/[R$\.,]/g, '')) / 100;
-    this.formattedSalary = this.currencyPipe.transform(this.salary, 'BRL', true, '1.2-2') || 'R$ 0,00';
+    this.salario = parseFloat(this.formattedSalario.replace(/[R$\.,]/g, '')) / 100;
+    this.formattedSalario = this.currencyPipe.transform(this.salario, 'BRL', true, '1.2-2') || 'R$ 0,00';
   }
 
   openConfirmationModal() {
@@ -99,7 +103,7 @@ export class RegistrarComponent {
   confirmSubmit() {
     if (this.formRegistro) {
       let registro = this.formRegistro.value;
-      registro.salario = this.salary;
+      registro.salario = this.salario;
       registro.cep = registro.cep.replace(/\D/g, '');
 
       this.authService.register(registro).subscribe(
