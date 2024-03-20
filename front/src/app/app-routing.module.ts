@@ -14,33 +14,14 @@ import {TransferenciaQuantiaComponent} from "./modules/cliente/components/transf
 import {TransferenciaConfirmComponent} from "./modules/cliente/components/transferencia/transferencia-confirm/transferencia-confirm.component";
 import {TransferenciaDoneComponent} from "./modules/cliente/components/transferencia/transferencia-done/transferencia-done.component";
 
-
-const routes: Routes = [
+const AuthRoutes: Routes = [
   {path: '', redirectTo: '/autenticacao', pathMatch: 'full'},
   {path: 'autenticacao', component: AutenticacaoComponent},
-  {path: 'gerente', redirectTo: 'gerente/home-gerente',},
-  {path: 'cliente', redirectTo: 'cliente/home-cliente'},
   {path: 'registrar', component: RegistrarComponent},
-  {
-    path: 'cliente/home-cliente',
-    component: HomeClienteComponent,
-    /*    canActivate: [authGuard],
-    data: {
-          role: 'CLIENTE',
-        },*/
-  },
-  {path: 'cliente/editar-perfil', component: EditarPerfilComponent},
-  {path: 'cliente/consulta-extrato', component: ConsultaExtratoComponent},
-  {
-    path: 'gerente/home-gerente',
-    component: HomeGerenteComponent,
-    /*    canActivate: [authGuard],
-    data: {
-      role: 'CLIENTE',
-    },*/
-  },
-  {path: 'cliente/saque', component: SaqueComponent},
-  {path: 'administrador/relatorio', component: RelatorioComponent},
+];
+
+const ClienteRoutes: Routes = [
+  {path: 'cliente', redirectTo: 'cliente/home-cliente'},
   {
     path: 'cliente/transferencia',
     children: [
@@ -51,12 +32,30 @@ const routes: Routes = [
       {path: 'new', component: TransferenciaNewComponent},
     ]
   },
+  {path: 'cliente/editar-perfil', component: EditarPerfilComponent},
+  {path: 'cliente/consulta-extrato', component: ConsultaExtratoComponent},
+  {path: 'cliente/saque', component: SaqueComponent},
+];
 
+const AdministradorRoutes: Routes = [
+  {path: 'administrador/relatorio', component: RelatorioComponent},
+];
+
+const GerenteRoutes: Routes = [
+  {path: 'gerente', redirectTo: 'gerente/home-gerente',},
+  {path: 'gerente/home-gerente', component: HomeGerenteComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot([
+    ...AuthRoutes,
+    ...ClienteRoutes,
+    ...AdministradorRoutes,
+    ...GerenteRoutes,
+  ], {enableTracing: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
 }
+
+
