@@ -21,7 +21,7 @@ const AuthRoutes: Routes = [
 ];
 
 const ClienteRoutes: Routes = [
-  {path: 'cliente', redirectTo: 'cliente/home-cliente'},
+  {path: 'cliente', redirectTo: 'cliente/home-cliente', pathMatch: 'full'},
   {
     path: 'cliente/transferencia',
     children: [
@@ -35,6 +35,7 @@ const ClienteRoutes: Routes = [
   {path: 'cliente/editar-perfil', component: EditarPerfilComponent},
   {path: 'cliente/consulta-extrato', component: ConsultaExtratoComponent},
   {path: 'cliente/saque', component: SaqueComponent},
+  {path: 'cliente/home-cliente', component: HomeClienteComponent},
 ];
 
 const AdministradorRoutes: Routes = [
