@@ -64,6 +64,17 @@ export class AuthService {
     });
   }
 
+  logarComoAdministrador() {
+    this.verifyLogin();
+    let login: Login = new Login('josephlucas@gmail.com', '123456');
+    this.login(login).subscribe(user => {
+      let usuario: Usuario | null = user ? user : null;
+      if (usuario != null) {
+        this.logarUsuario = usuario;
+      }
+    });
+  }
+
   register(value: any) {
      return this.usuarioService.register(value);
   }

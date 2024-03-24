@@ -31,6 +31,8 @@ import {
 import {
   TransferenciaDoneComponent
 } from "./modules/cliente/components/transferencia/transferencia-done/transferencia-done.component";
+import {MatTreeModule} from "@angular/material/tree";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -53,10 +55,12 @@ registerLocaleData(localePt, 'pt-BR');
         AdministradorModule,
         CommonModule,
         ReactiveFormsModule,
+        MatTreeModule
     ],
   providers: [
     provideNgxMask({},),
-    {provide: LOCALE_ID, useValue: 'pt-BR'}
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

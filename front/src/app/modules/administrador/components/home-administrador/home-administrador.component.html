@@ -1,0 +1,26 @@
+<!--quero adicionar uma estrutura de arvore contendo os gerentes e seus respectivos clientes-->
+
+
+<div class="flex-column justify-content-center align-items-center px-5" style="height: 85vh">
+  <div class="card p-3">
+    <h2>Gerentes</h2>
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+        <button mat-icon-button disabled></button>
+        <div [innerHTML]="node.item"></div>
+      </mat-tree-node>
+      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+        <button mat-icon-button
+                [attr.aria-label]="'Toggle ' + node.item" matTreeNodeToggle>
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+        <div [innerHTML]="node.item" class="pe-3"></div>
+        <mat-progress-bar *ngIf="node.isLoading"
+                          mode="indeterminate"
+                          class="example-tree-progress-bar"></mat-progress-bar>
+      </mat-tree-node>
+    </mat-tree>
+  </div>
+</div>

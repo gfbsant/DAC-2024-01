@@ -18,7 +18,11 @@ export class UsuarioService {
     new Usuario(2,
       'alexmorgan@gmail.com',
       'GERENTE',
-      '123456')
+      '123456'),
+    new Usuario(3,
+      'josephlucas@gmail.com',
+      'ADMINISTRADOR',
+      '123456'),
   ];
 
   constructor() {

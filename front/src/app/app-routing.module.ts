@@ -14,6 +14,9 @@ import {TransferenciaQuantiaComponent} from "./modules/cliente/components/transf
 import {TransferenciaConfirmComponent} from "./modules/cliente/components/transferencia/transferencia-confirm/transferencia-confirm.component";
 import {TransferenciaDoneComponent} from "./modules/cliente/components/transferencia/transferencia-done/transferencia-done.component";
 import { DepositarComponent } from './modules/cliente/components/depositar/depositar/depositar.component';
+import {
+  HomeAdministradorComponent
+} from "./modules/administrador/components/home-administrador/home-administrador.component";
 
 const AuthRoutes: Routes = [
   {path: '', redirectTo: '/autenticacao', pathMatch: 'full'},
@@ -41,7 +44,10 @@ const ClienteRoutes: Routes = [
 ];
 
 const AdministradorRoutes: Routes = [
+  {path: 'administrador', redirectTo: 'administrador/home-administrador', pathMatch: 'full'},
+  {path: 'adm', redirectTo: 'administrador/home-administrador', pathMatch: 'full'},
   {path: 'administrador/relatorio', component: RelatorioComponent},
+  {path: 'administrador/home-administrador', component: HomeAdministradorComponent},
 ];
 
 const GerenteRoutes: Routes = [
@@ -55,7 +61,7 @@ const GerenteRoutes: Routes = [
     ...ClienteRoutes,
     ...AdministradorRoutes,
     ...GerenteRoutes,
-  ], {enableTracing: true})],
+  ])],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
