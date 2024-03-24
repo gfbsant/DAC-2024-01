@@ -27,6 +27,11 @@ export class ClienteService {
   recusarCadastro(cliente: Cliente) {
     cliente.situacaoCadastral = 'RECUSADO';
   }
+  
+  depositar(deposito: number) {
+    let currentCliente: Cliente = this.getClienteById(1);
+    currentCliente.saldo += deposito;
+  }
 }
 
 const CLIENTES: Cliente[] = [

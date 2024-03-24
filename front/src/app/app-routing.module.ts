@@ -13,6 +13,7 @@ import {TransferenciaComponent} from "./modules/cliente/components/transferencia
 import {TransferenciaQuantiaComponent} from "./modules/cliente/components/transferencia/transferencia-quantia/transferencia-quantia.component";
 import {TransferenciaConfirmComponent} from "./modules/cliente/components/transferencia/transferencia-confirm/transferencia-confirm.component";
 import {TransferenciaDoneComponent} from "./modules/cliente/components/transferencia/transferencia-done/transferencia-done.component";
+import { DepositarComponent } from './modules/cliente/components/depositar/depositar/depositar.component';
 
 const AuthRoutes: Routes = [
   {path: '', redirectTo: '/autenticacao', pathMatch: 'full'},
@@ -36,6 +37,7 @@ const ClienteRoutes: Routes = [
   {path: 'cliente/consulta-extrato', component: ConsultaExtratoComponent},
   {path: 'cliente/saque', component: SaqueComponent},
   {path: 'cliente/home-cliente', component: HomeClienteComponent},
+  {path: 'cliente/depositar', component: DepositarComponent}
 ];
 
 const AdministradorRoutes: Routes = [
