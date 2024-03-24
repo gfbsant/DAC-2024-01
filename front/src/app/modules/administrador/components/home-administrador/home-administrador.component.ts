@@ -11,7 +11,6 @@ export class DynamicFlatNode {
     public level = 1,
     public expandable = false,
     public isLoading = false,
-
   ) {}
 }
 
@@ -115,9 +114,7 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
       setTimeout(() => {
         if (expand) {
           const newNode = new DynamicFlatNode(
-            `Numero de Clientes: ${data.numClients}
-                <br/>Soma de saldos positivos: R$ ${data.sumPositive},00
-                <br/>Soma de saldos negativos: R$ ${data.sumNegative},00`
+            `Numero de Clientes: ${data.numClients}<br/>Soma de saldos positivos: R$ ${data.sumPositive},00<br/>Soma de saldos negativos: R$ ${data.sumNegative},00`
               .replace(/\n/g, '<br/>'),
             node.level + 1,
             false

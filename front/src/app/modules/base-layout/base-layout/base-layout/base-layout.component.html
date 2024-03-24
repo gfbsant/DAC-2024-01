@@ -69,7 +69,20 @@
     </ul>
 
     <ul *ngIf="usuario.perfil.includes('ADMINISTRADOR')" class="nav gap-3">
-      <!--to-do-->
-    </ul>
+      <button *ngIf="!isCurrentRoute('/administrador/relatorio')" class="btn btn-outline-light btn-sm"
+              (click)="goRelatorio()">Relatório de Clientes
+      </button>
+      <button *ngIf="isCurrentRoute('/administrador/relatorio')" class="btn btn-outline-light active btn-sm"
+              aria-current="page" (click)="goRelatorio()">Relatório de Clientes
+      </button>
+      <button *ngIf="!isCurrentRoute('/administrador/listar-gerentes')" class="btn btn-outline-light btn-sm"
+              (click)="goListarGerentes()">Listar Gerentes
+      </button>
+      <button *ngIf="isCurrentRoute('/administrador/listar-gerentes')" class="btn btn-outline-light active btn-sm"
+              aria-current="page" (click)="goListarGerentes()">Listar Gerentes
+      </button>
+      <button class="btn btn-danger btn-sm"
+              (click)="logout()">Sair
+      </button>    </ul>
   </div>
 </nav>

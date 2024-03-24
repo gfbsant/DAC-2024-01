@@ -18,6 +18,18 @@ export class BaseLayoutComponent {
   public get usuario() : Usuario | undefined {
     return this.loginService.usuarioLogado;
   }
+  getUsuarioPerfil() : string | any[] | null | undefined {
+    switch (this.usuario?.perfil) {
+      case 'ADMINISTRADOR':
+        return '/administrador';
+      case 'CLIENTE':
+        return '/cliente';
+      case 'GERENTE':
+        return '/gerente';
+      default:
+        return '/login';
+    }
+  }
 
   public logout(): void{
     this.loginService.logout();
@@ -52,28 +64,24 @@ export class BaseLayoutComponent {
     this.router.navigate(['/cliente/consulta-extrato']);
   };
 
-  getUsuarioPerfil() : string | any[] | null | undefined {
-    switch (this.usuario?.perfil) {
-      case 'ADMINISTRADOR':
-        return '/administrador';
-      case 'CLIENTE':
-        return '/cliente';
-      case 'GERENTE':
-        return '/gerente';
-      default:
-        return '/login';
-    }
-  }
-
   goConsultarCliente() {
-    this.router.navigate([this.getUsuarioPerfil(), '/gerente/consultar-cliente']);
+    this.router.navigate(['/gerente/consultar-cliente']);
   }
 
   goListarClientes() {
-    this.router.navigate([this.getUsuarioPerfil(), '/gerente/listar-clientes']);
+    this.router.navigate(['/gerente/listar-clientes']);
   }
 
   goListarTop3Clientes() {
-    this.router.navigate([this.getUsuarioPerfil(), '/gerente/listar-top3-clientes']);
+    this.router.navigate(['/gerente/listar-top3-clientes']);
   }
+
+goRelatorio() {
+    this.router.navigate([ 'administrador/relatorio']);
+  }
+
+  goListarGerentes() {
+    this.router.navigate(['/administrador/listar-gerentes']);
+  }
+
 }
