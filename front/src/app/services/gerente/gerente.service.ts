@@ -27,5 +27,12 @@ export class GerenteService {
       ),
     ]);
   }
+
+  getTop3ClientesPorSaldo(): Observable<Cliente[]> {
+    return of(this.clienteService.getClientes()
+      .filter(cliente => cliente.situacaoCadastral === 'APROVADO')
+      .sort((a, b) => b.saldo - a.saldo)
+      .slice(0, 3));
+  }
 }
 
