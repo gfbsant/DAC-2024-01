@@ -1,0 +1,230 @@
+.stepper-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.stepper-item:not(:last-child):after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: #ccc;
+  position: relative;
+  top: 15px; /* Metade da altura do step-counter para centralizar */
+  margin: 0 15px;
+}
+
+.step-counter {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.step-name {
+  font-size: 0.9em;
+}
+
+.completed .step-counter {
+  border-color: #28a745; /* Cor verde de sucesso do Bootstrap */
+  background-color: #28a745;
+  color: white;
+}
+
+.steps {
+  border: 1px solid #e7e7e7
+}
+
+.steps-header {
+  padding: .375rem;
+  border-bottom: 1px solid #e7e7e7
+}
+
+.steps-header .progress {
+  height: .25rem
+}
+
+.steps-body {
+  display: table;
+  table-layout: fixed;
+  width: 100%
+}
+
+.step {
+  display: table-cell;
+  position: relative;
+  padding: 1rem .75rem;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  border-right: 1px dashed #dfdfdf;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none
+}
+
+.step:last-child {
+  border-right: 0
+}
+
+.step-indicator {
+  display: block;
+  position: absolute;
+  top: .75rem;
+  left: .75rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid #e7e7e7;
+  border-radius: 50%;
+  background-color: #fff;
+  font-size: .875rem;
+  line-height: 1.375rem
+}
+
+.has-indicator {
+  padding-right: 1.5rem;
+  padding-left: 2.375rem
+}
+
+.has-indicator .step-indicator {
+  top: 50%;
+  margin-top: -.75rem
+}
+
+.step-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 auto;
+  margin-bottom: .75rem;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  color: #888
+}
+
+.step:hover {
+  color: rgba(0, 0, 0, 0.9);
+  text-decoration: none
+}
+
+.step:hover .step-indicator {
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  border-color: transparent;
+  background-color: #f4f4f4
+}
+
+.step:hover .step-icon {
+  color: rgba(0, 0, 0, 0.9)
+}
+
+.step-active,
+.step-active:hover {
+  color: rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  cursor: default
+}
+
+.step-active .step-indicator,
+.step-active:hover .step-indicator {
+  border-color: transparent;
+  background-color: #5c77fc;
+  color: #fff
+}
+
+.step-active .step-icon,
+.step-active:hover .step-icon {
+  color: #5c77fc
+}
+
+.step-completed .step-indicator,
+.step-completed:hover .step-indicator {
+  border-color: transparent;
+  background-color: rgba(51, 203, 129, 0.12);
+  color: #33cb81;
+  line-height: 1.25rem
+}
+
+.step-completed .step-indicator .feather,
+.step-completed:hover .step-indicator .feather {
+  width: .875rem;
+  height: .875rem
+}
+
+@media (max-width: 575.98px) {
+  .steps-header {
+    display: none
+  }
+
+  .steps-body,
+  .step {
+    display: block
+  }
+
+  .step {
+    border-right: 0;
+    border-bottom: 1px dashed #e7e7e7
+  }
+
+  .step:last-child {
+    border-bottom: 0
+  }
+
+  .has-indicator {
+    padding: 1rem .75rem
+  }
+
+  .has-indicator .step-indicator {
+    display: inline-block;
+    position: static;
+    margin: 0 0.75rem 0 0;
+  }
+}
+
+.bg-secondary {
+  background-color: #f7f7f7 !important;
+}
+
+.amount-container input::-webkit-outer-spin-button,
+.amount-container input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.amount-container input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.amount-container span, .amount-container input {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.amount-container input {
+  border: none;
+  box-shadow: none;
+  font-weight: bold;
+  width: auto;
+  display: inline;
+  min-width: 3rem;
+  max-width: none;
+  text-align: center;
+}
+
+.amount-container input:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+

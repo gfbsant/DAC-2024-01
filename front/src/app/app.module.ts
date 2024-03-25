@@ -14,23 +14,7 @@ import {CommonModule, registerLocaleData} from "@angular/common";
 import localePt from '@angular/common/locales/pt';
 import {NumericDirective} from './shared/directives/numeric.directive';
 import {AdministradorModule} from './modules/administrador/administrador.module';
-import {
-  TransferenciaNewComponent
-} from "./modules/cliente/components/transferencia/transferencia-new/transferencia-new.component";
-import {EditarPerfilComponent} from "./modules/cliente/components/editar-perfil/editar-perfil.component";
-import {AutenticacaoComponent} from "./modules/auth/components/autenticacao/autenticacao.component";
-import {ConsultaExtratoComponent} from "./modules/cliente/components/consulta-extrato/consulta-extrato.component";
-import {HomeClienteComponent} from "./modules/cliente/components/home-cliente/home-cliente.component";
-import {TransferenciaComponent} from "./modules/cliente/components/transferencia/transferencia.component";
-import {
-  TransferenciaQuantiaComponent
-} from "./modules/cliente/components/transferencia/transferencia-quantia/transferencia-quantia.component";
-import {
-  TransferenciaConfirmComponent
-} from "./modules/cliente/components/transferencia/transferencia-confirm/transferencia-confirm.component";
-import {
-  TransferenciaDoneComponent
-} from "./modules/cliente/components/transferencia/transferencia-done/transferencia-done.component";
+
 import {MatTreeModule} from "@angular/material/tree";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -41,26 +25,28 @@ registerLocaleData(localePt, 'pt-BR');
     AppComponent,
     RegistrarComponent,
     NumericDirective,
-
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        ClienteModule,
-        BaseLayoutModule,
-        NgxMaskDirective,
-        FormsModule,
-        GerenteModule,
-        AdministradorModule,
-        CommonModule,
-        ReactiveFormsModule,
-        MatTreeModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    ClienteModule,
+    BaseLayoutModule,
+    NgxMaskDirective,
+    FormsModule,
+    GerenteModule,
+    AdministradorModule,
+    CommonModule,
+    ReactiveFormsModule,
+    MatTreeModule
+  ],
   providers: [
     provideNgxMask({},),
     {provide: LOCALE_ID, useValue: 'pt-BR'},
     provideAnimationsAsync()
+  ],
+  exports: [
+    NumericDirective
   ],
   bootstrap: [AppComponent]
 })

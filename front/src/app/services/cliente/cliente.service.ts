@@ -6,12 +6,12 @@ import {Endereco} from "../../models/endereco/endereco.model";
   providedIn: 'root'
 })
 export class ClienteService {
-  
+
   constructor() {  }
   getClientes(): Cliente[] {
     return CLIENTES;
   }
-  
+
   getClienteById(id: number): Cliente {
     return <Cliente>CLIENTES.find(cliente => cliente.id === id);
   }
@@ -27,7 +27,7 @@ export class ClienteService {
   recusarCadastro(cliente: Cliente) {
     cliente.situacaoCadastral = 'RECUSADO';
   }
-  
+
   depositar(deposito: number) {
     let currentCliente: Cliente = this.getClienteById(1);
     currentCliente.saldo += deposito;

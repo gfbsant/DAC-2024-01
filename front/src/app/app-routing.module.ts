@@ -8,12 +8,8 @@ import {HomeClienteComponent} from "./modules/cliente/components/home-cliente/ho
 import {HomeGerenteComponent} from "./modules/gerente/components/home-gerente/home-gerente.component";
 import {RelatorioComponent} from './modules/administrador/components/relatorio/relatorio.component';
 import {SaqueComponent} from './modules/cliente/components/saque/saque.component';
-import {TransferenciaNewComponent} from "./modules/cliente/components/transferencia/transferencia-new/transferencia-new.component";
 import {TransferenciaComponent} from "./modules/cliente/components/transferencia/transferencia.component";
-import {TransferenciaQuantiaComponent} from "./modules/cliente/components/transferencia/transferencia-quantia/transferencia-quantia.component";
-import {TransferenciaConfirmComponent} from "./modules/cliente/components/transferencia/transferencia-confirm/transferencia-confirm.component";
-import {TransferenciaDoneComponent} from "./modules/cliente/components/transferencia/transferencia-done/transferencia-done.component";
-import { DepositarComponent } from './modules/cliente/components/depositar/depositar/depositar.component';
+import {DepositarComponent} from './modules/cliente/components/depositar/depositar/depositar.component';
 import {
   HomeAdministradorComponent
 } from "./modules/administrador/components/home-administrador/home-administrador.component";
@@ -26,16 +22,7 @@ const AuthRoutes: Routes = [
 
 const ClienteRoutes: Routes = [
   {path: 'cliente', redirectTo: 'cliente/home-cliente', pathMatch: 'full'},
-  {
-    path: 'cliente/transferencia',
-    children: [
-      {path: '', component: TransferenciaComponent},
-      {path: 'quantia', component: TransferenciaQuantiaComponent},
-      {path: 'confirm', component: TransferenciaConfirmComponent},
-      {path: 'done', component: TransferenciaDoneComponent},
-      {path: 'new', component: TransferenciaNewComponent},
-    ]
-  },
+  {path: 'cliente/transferencia', component: TransferenciaComponent},
   {path: 'cliente/editar-perfil', component: EditarPerfilComponent},
   {path: 'cliente/consulta-extrato', component: ConsultaExtratoComponent},
   {path: 'cliente/saque', component: SaqueComponent},
