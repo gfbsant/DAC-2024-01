@@ -54,11 +54,7 @@ export class DynamicDatabase {
     );
   }
 
-  isExpandable(node: string): Observable<boolean> {
-    return this.dataMap.pipe(
-      map(dataMap => dataMap.has(node))
-    );
-  }
+
 }
 
 export class DynamicDataSource implements DataSource<DynamicFlatNode> {
