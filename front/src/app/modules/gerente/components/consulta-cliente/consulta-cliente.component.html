@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-header">
+          <h2>Consultar Cliente</h2>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="consultarCliente()" #consultaForm="ngForm">
+            <div class="mb-3">
+              <label for="cpfField" class="form-label">CPF do Cliente:</label>
+              <input type="text" class="form-control" id="cpfField" [(ngModel)]="cpf" name="cpf" required
+                     mask="000.000.000-00">
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary" [disabled]="!consultaForm.form.valid">Consultar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div *ngIf="cliente || erro" class="mt-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" *ngIf="cliente">
+            <a class="nav-link" [class.active]="!exibirDadosConta" id="cliente-tab" (click)="mostrarDadosDoCliente()"
+               role="tab">Dados do Cliente</a>
+          </li>
+          <li class="nav-item" *ngIf="conta">
+            <a class="nav-link" [class.active]="exibirDadosConta" id="conta-tab" (click)="mostrarDadosDaConta()"
+               role="tab">Dados da Conta</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tab-pane fade show active" id="cliente" role="tabpanel" aria-labelledby="cliente-tab">
+        <div *ngIf="cliente && !exibirDadosConta" class="card card-body">
+          <h3 class="card-title">Dados do Cliente:</h3>
+          <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+          <p><strong>CPF:</strong> {{ cliente.cpf }}</p>
+          <p><strong>Email:</strong> {{ cliente.email }}</p>
+          <p><strong>Telefone:</strong> {{ cliente.telefone }}</p>
+          <p><strong>Endereço:</strong> {{ cliente.endereco.rua }}, {{ cliente.endereco.numero }}
+            - {{ cliente.endereco.bairro }}, {{ cliente.endereco.cidade }} - {{ cliente.endereco.estado }}
+            , {{ cliente.endereco.cep }}</p>
+          <p><strong>Salário:</strong> {{ cliente.salario | currency:'BRL' }}</p>
+          <p><strong>Saldo:</strong> {{ cliente.saldo | currency:'BRL' }}</p>
+          <p><strong>Situação Cadastral:</strong> {{ cliente.situacaoCadastral }}</p></div>
+      </div>
+      <div class="tab-pane fade show active" id="conta" role="tabpanel" aria-labelledby="conta-tab">
+        <div *ngIf="conta && exibirDadosConta" class="card card-body">
+          <h3 class="card-title">Dados da Conta:</h3>
+          <p><strong>Número da Conta:</strong> {{ conta.numeroConta }}</p>
+          <p><strong>Data de Criação:</strong> {{ conta.dataCriacao | date }}</p>
+          <p><strong>Limite:</strong> {{ conta.limite | currency:'BRL' }}</p>
+          <p><strong>Gerente:</strong> {{ gerente?.nome }}</p>
+        </div>
+      </div>
+      <div *ngIf="erro" class="alert alert-danger mt-3">
+        Cliente não encontrado. Por favor, verifique o CPF informado.
+      </div>
+
+    </div>
+  </div>
+</div>

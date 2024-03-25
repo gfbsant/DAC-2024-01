@@ -1,0 +1,17 @@
+.card-header h2 {
+  font-size: 1.5rem;
+}
+
+.nav-tabs {
+  margin-bottom: 15px;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  padding-top: 0;
+  border: 1px solid #ddd;
+  border-top: none;
+  background-color: #fff;
+}
+
+
