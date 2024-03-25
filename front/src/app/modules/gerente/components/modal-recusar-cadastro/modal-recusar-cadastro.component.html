@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Rejeitar {{cliente.nome}}</h4>
+</div>
+<div class="modal-body">
+  <label for="motivo">Motivo:</label>
+  <textarea id="motivo" name="motivo" rows="4" cols="50" placeholder="Digite o motivo para recusar o cadastro" required></textarea>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Fechar</button>
+  <button type="submit" class="btn btn-danger" (click)="recusarCadastro(cliente)">Recusar</button>
+</div>
