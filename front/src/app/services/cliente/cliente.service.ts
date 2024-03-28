@@ -36,6 +36,12 @@ export class ClienteService {
     currentCliente.saldo += deposito;
   }
 
+  retirar(saque: number){
+    let currentCliente: Cliente = this.getClienteById(1);
+    currentCliente.saldo = saque;    
+  }  
+
+
   getClienteByCPF(cpf: string): Observable<{ cliente: Cliente; conta?: Conta } | undefined> {
     const cpfNormalized = cpf.replace(/[\.\-]/g, '');
     const cliente = CLIENTES.find(cliente => cliente.cpf.replace(/[\.\-]/g, '') === cpfNormalized);
