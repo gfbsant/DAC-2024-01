@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Cliente} from "../../models/cliente/cliente.model";
 import {Endereco} from "../../models/endereco/endereco.model";
+import {Observable, of} from "rxjs";
+import {Conta} from "../../models/conta/conta.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
+  private contas: Conta[] = [];
 
   constructor() {  }
   getClientes(): Cliente[] {
@@ -32,6 +35,24 @@ export class ClienteService {
     let currentCliente: Cliente = this.getClienteById(1);
     currentCliente.saldo += deposito;
   }
+
+  retirar(saque: number){
+    let currentCliente: Cliente = this.getClienteById(1);
+    currentCliente.saldo = saque;    
+  }  
+
+
+  getClienteByCPF(cpf: string): Observable<{ cliente: Cliente; conta?: Conta } | undefined> {
+    const cpfNormalized = cpf.replace(/[\.\-]/g, '');
+    const cliente = CLIENTES.find(cliente => cliente.cpf.replace(/[\.\-]/g, '') === cpfNormalized);
+    if (cliente) {
+      const conta = this.contas.find(conta => conta.clienteId === cliente.id);
+      return of({cliente, conta});
+    }
+    return of(undefined);
+  }
+
+
 }
 
 const CLIENTES: Cliente[] = [

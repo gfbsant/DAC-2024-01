@@ -13,6 +13,8 @@ import {DepositarComponent} from './modules/cliente/components/depositar/deposit
 import {
   HomeAdministradorComponent
 } from "./modules/administrador/components/home-administrador/home-administrador.component";
+import { ListarTop3ClientesComponent } from "./modules/gerente/components/listar-top3-clientes/listar-top3-clientes.component";
+import {ConsultaClienteComponent} from "./modules/gerente/components/consulta-cliente/consulta-cliente.component";
 
 const AuthRoutes: Routes = [
   {path: '', redirectTo: '/autenticacao', pathMatch: 'full'},
@@ -40,6 +42,8 @@ const AdministradorRoutes: Routes = [
 const GerenteRoutes: Routes = [
   {path: 'gerente', redirectTo: 'gerente/home-gerente',},
   {path: 'gerente/home-gerente', component: HomeGerenteComponent},
+  {path: 'gerente/listar-top3-clientes', component: ListarTop3ClientesComponent},
+  {path: 'gerente/consultar-cliente', component: ConsultaClienteComponent},
 ];
 
 @NgModule({

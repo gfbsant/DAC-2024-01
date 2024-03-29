@@ -1,0 +1,22 @@
+<div class="container">
+  <h2 class="mb-3 text-center">Top 3 Clientes por Saldo</h2>
+  <table class="home-table">
+    <thead class="bg-secondary">
+    <tr>
+      <th>Nome</th>
+      <th>Saldo</th>
+      <th>Email</th>
+      <th>Telefone</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cliente of top3Clientes">
+      <td>{{ cliente.nome }}</td>
+      <td>{{ cliente.saldo | currency }}</td>
+      <td>{{ cliente.email }}</td>
+      <td>{{ cliente.telefone }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
