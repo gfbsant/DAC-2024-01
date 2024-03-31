@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Editar Gerente</h2>
+  <form>
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" id="nome" [(ngModel)]="gerente.nome" name="nome">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" id="email" [(ngModel)]="gerente.email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="telefone">Telefone:</label>
+      <input type="text" class="form-control" id="telefone" [(ngModel)]="gerente.telefone" name="telefone" maxlength="11">
+    </div>
+    <div class="form-group">
+      <label for="cpf">CPF:</label>
+      <input type="text" class="form-control" id="cpf" [(ngModel)]="gerente.cpf" name="cpf" [disabled]="true">
+    </div>
+    <div class="mt-3">
+      <button type="submit" class="btn btn-primary me-1" (click)="salvar()">Salvar</button>
+      <button type="submit" class="btn btn-secondary" (click)="history.go(-1)">Voltar</button>
+    </div>
+  </form>
+</div>
+
+

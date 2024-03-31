@@ -6,6 +6,7 @@ import { ListarTop3ClientesComponent } from './components/listar-top3-clientes/l
 import {FormsModule} from "@angular/forms";
 import {NgxMaskDirective} from "ngx-mask";
 import {ConsultaClienteComponent} from "./components/consulta-cliente/consulta-cliente.component";
+import { EditarGerenteComponent } from './components/editar-gerente/editar-gerente.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {ConsultaClienteComponent} from "./components/consulta-cliente/consulta-c
     ModalRecusarCadastroComponent,
     ListarTop3ClientesComponent,
     ConsultaClienteComponent,
+    EditarGerenteComponent,
   ],
   imports: [
     CommonModule,

@@ -15,6 +15,7 @@ import {
 } from "./modules/administrador/components/home-administrador/home-administrador.component";
 import { ListarTop3ClientesComponent } from "./modules/gerente/components/listar-top3-clientes/listar-top3-clientes.component";
 import {ConsultaClienteComponent} from "./modules/gerente/components/consulta-cliente/consulta-cliente.component";
+import {EditarGerenteComponent} from "./modules/gerente/components/editar-gerente/editar-gerente.component";
 
 const AuthRoutes: Routes = [
   {path: '', redirectTo: '/autenticacao', pathMatch: 'full'},
@@ -37,6 +38,7 @@ const AdministradorRoutes: Routes = [
   {path: 'adm', redirectTo: 'administrador/home-administrador', pathMatch: 'full'},
   {path: 'administrador/relatorio', component: RelatorioComponent},
   {path: 'administrador/home-administrador', component: HomeAdministradorComponent},
+  {path: 'administrador/editar-gerente', component: EditarGerenteComponent},
 ];
 
 const GerenteRoutes: Routes = [
