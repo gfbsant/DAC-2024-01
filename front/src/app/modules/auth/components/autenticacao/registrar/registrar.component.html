@@ -78,7 +78,7 @@
           </div>
           <div class="form-floating col-sm-6 mb-3">
             <input type="tel" class="form-control" id="telefone" placeholder="(XX) XXXXX-XXXX" mask="(00) 0 0000 0000"
-                   [(ngModel)]="telefone" ngModel name="telefone" required telefone #telefoneCtrl="ngModel">
+                   [(ngModel)]="telefone" ngModel name="telefone" required #telefoneCtrl="ngModel">
             <label for="telefone" class="form-label">Telefone</label>
             <i *ngIf="telefoneCtrl.valid && telefoneCtrl.touched"
                class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
@@ -91,7 +91,7 @@
           <div class="form-floating col-sm-6 mb-3">
             <input type="text" inputmode="numeric" (keyup)="transformSalary(salarioCtrl)" [(ngModel)]="formattedSalario"
                    class="form-control" id="salario" placeholder="Salário atual" numeric name="salario"
-                   required salario #salarioCtrl="ngModel">
+                   required #salarioCtrl="ngModel">
             <label for="salario" class="form-label">Salário</label>
             <i *ngIf="salarioCtrl.valid && salarioCtrl.touched"
                class="bi bi-check-lg text-success position-absolute end-0 top-50 translate-middle-y me-3"></i>
