@@ -81,6 +81,12 @@
       <button *ngIf="isCurrentRoute('/administrador/listar-gerentes')" class="btn btn-outline-light active btn-sm"
               aria-current="page" (click)="goListarGerentes()">Listar Gerentes
       </button>
+      <button *ngIf="!isCurrentRoute('/administrador/inserir-gerente')" class="btn btn-outline-light btn-sm"
+              (click)="goInserirGerente()">Inserir Gerente
+      </button>
+      <button *ngIf="isCurrentRoute('/administrador/inserir-gerente')" class="btn btn-outline-light active btn-sm"
+              aria-current="page" (click)="goInserirGerente()">Inserir Gerente
+      </button>
       <button class="btn btn-danger btn-sm"
               (click)="logout()">Sair
       </button>

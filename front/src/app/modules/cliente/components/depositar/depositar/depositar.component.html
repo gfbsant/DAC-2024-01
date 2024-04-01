@@ -1,12 +1,12 @@
 <div class="d-flex flex-column justify-content-center align-items-center" style="height: 20vh;">
-  <div class="card text-center">
+  <div class="card text-center" style="padding: 1%;margin-bottom: 1%">
       <h3>Olá, {{ cliente?.nome }}</h3>
       <h4>Seu saldo é: R$ {{ cliente?.saldo | number:'1.2-2' }}</h4>
   </div>
 </div>
 
 <div class="d-flex flex-column justify-content-center align-items-center" style="height: 20vh;">
-  <div class="card text-center">
+  <div class="card text-center" style="padding: 1%;">
       <h2>Digite o valor para depositar:</h2>
       <div class="form-group">
         <input type="number" class="form-control" name="deposito" id="deposito" placeholder="R$">

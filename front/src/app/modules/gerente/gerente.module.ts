@@ -8,6 +8,7 @@ import {NgxMaskDirective} from "ngx-mask";
 import {ConsultaClienteComponent} from "./components/consulta-cliente/consulta-cliente.component";
 import { EditarGerenteComponent } from './components/editar-gerente/editar-gerente.component';
 import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
+import { InserirGerenteComponent } from './components/inserir-gerente/inserir-gerente.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ListarClientesComponent } from './components/listar-clientes/listar-cli
     ConsultaClienteComponent,
     EditarGerenteComponent,
     ListarClientesComponent,
+    InserirGerenteComponent,
   ],
   imports: [
     CommonModule,

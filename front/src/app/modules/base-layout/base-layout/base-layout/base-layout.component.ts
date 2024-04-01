@@ -84,4 +84,8 @@ goRelatorio() {
     this.router.navigate(['/administrador/listar-gerentes']);
   }
 
+  goInserirGerente() {
+    this.router.navigate([ '/administrador/inserir-gerente' ])
+  }
+
 }
