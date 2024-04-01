@@ -1,0 +1,67 @@
+<div class="container">
+    <h2 class="mb-3 text-center">Lista de Clientes do Gerente {{this.gerente?.nome}}</h2>
+    <table class="home-table">
+        <thead class="bg-secondary">
+            <tr>
+                <th>Nome</th>
+                <th>Saldo</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Consultar Cliente</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of listaClientes">
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.saldo | currency }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.telefone }}</td>
+                <td>
+                    <form><button type="submit" class="btn btn-primary" (click)="consultarCliente(cliente.cpf)">Consultar </button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="cliente || erro" class="mt-4">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" *ngIf="cliente">
+                <a class="nav-link" [class.active]="!exibirDadosConta" id="cliente-tab"
+                    (click)="mostrarDadosDoCliente()" role="tab">Dados do Cliente</a>
+            </li>
+            <li class="nav-item" *ngIf="conta">
+                <a class="nav-link" [class.active]="exibirDadosConta" id="conta-tab" (click)="mostrarDadosDaConta()"
+                    role="tab">Dados da Conta</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-pane fade show active" id="cliente" role="tabpanel" aria-labelledby="cliente-tab">
+        <div *ngIf="cliente && !exibirDadosConta" class="card card-body">
+            <h3 class="card-title">Dados do Cliente:</h3>
+            <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+            <p><strong>CPF:</strong> {{ cliente.cpf }}</p>
+            <p><strong>Email:</strong> {{ cliente.email }}</p>
+            <p><strong>Telefone:</strong> {{ cliente.telefone }}</p>
+            <p><strong>Endereço:</strong> {{ cliente.endereco.rua }}, {{ cliente.endereco.numero }}
+                - {{ cliente.endereco.bairro }}, {{ cliente.endereco.cidade }} - {{ cliente.endereco.estado }}
+                , {{ cliente.endereco.cep }}</p>
+            <p><strong>Salário:</strong> {{ cliente.salario | currency:'BRL' }}</p>
+            <p><strong>Saldo:</strong> {{ cliente.saldo | currency:'BRL' }}</p>
+            <p><strong>Situação Cadastral:</strong> {{ cliente.situacaoCadastral }}</p>
+        </div>
+    </div>
+    <div class="tab-pane fade show active" id="conta" role="tabpanel" aria-labelledby="conta-tab">
+        <div *ngIf="conta && exibirDadosConta" class="card card-body">
+            <h3 class="card-title">Dados da Conta:</h3>
+            <p><strong>Número da Conta:</strong> {{ conta.numeroConta }}</p>
+            <p><strong>Data de Criação:</strong> {{ conta.dataCriacao | date }}</p>
+            <p><strong>Limite:</strong> {{ conta.limite | currency:'BRL' }}</p>
+            <p><strong>Gerente:</strong> {{ gerente?.nome }}</p>
+        </div>
+    </div>
+    <div *ngIf="erro" class="alert alert-danger mt-3">
+        Cliente não encontrado. Por favor, verifique o CPF informado.
+    </div>
+
+</div>

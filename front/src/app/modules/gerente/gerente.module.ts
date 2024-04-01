@@ -7,6 +7,7 @@ import {FormsModule} from "@angular/forms";
 import {NgxMaskDirective} from "ngx-mask";
 import {ConsultaClienteComponent} from "./components/consulta-cliente/consulta-cliente.component";
 import { EditarGerenteComponent } from './components/editar-gerente/editar-gerente.component';
+import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { EditarGerenteComponent } from './components/editar-gerente/editar-geren
     ListarTop3ClientesComponent,
     ConsultaClienteComponent,
     EditarGerenteComponent,
+    ListarClientesComponent,
   ],
   imports: [
     CommonModule,

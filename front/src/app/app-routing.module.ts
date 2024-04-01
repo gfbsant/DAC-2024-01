@@ -16,6 +16,7 @@ import {
 import { ListarTop3ClientesComponent } from "./modules/gerente/components/listar-top3-clientes/listar-top3-clientes.component";
 import {ConsultaClienteComponent} from "./modules/gerente/components/consulta-cliente/consulta-cliente.component";
 import {EditarGerenteComponent} from "./modules/gerente/components/editar-gerente/editar-gerente.component";
+import { ListarClientesComponent } from './modules/gerente/components/listar-clientes/listar-clientes.component';
 
 const AuthRoutes: Routes = [
   {path: '', redirectTo: '/autenticacao', pathMatch: 'full'},
@@ -46,6 +47,7 @@ const GerenteRoutes: Routes = [
   {path: 'gerente/home-gerente', component: HomeGerenteComponent},
   {path: 'gerente/listar-top3-clientes', component: ListarTop3ClientesComponent},
   {path: 'gerente/consultar-cliente', component: ConsultaClienteComponent},
+  {path: 'gerente/listar-clientes', component:ListarClientesComponent}
 ];
 
 @NgModule({

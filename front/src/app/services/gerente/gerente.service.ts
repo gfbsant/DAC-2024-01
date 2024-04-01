@@ -46,5 +46,11 @@ export class GerenteService {
   updateGerente(id : number, gerente: any) {
     return of(gerente);
   }
-}
 
+  getTodosClientesPorGerente(idGerente : string): Observable<Cliente[]>{
+    return of(this.clienteService.getClientes()
+      .filter(cliente => cliente.gerente === idGerente )
+      .sort((a, b) => (b.nome > a.nome ? -1 : 1)));
+  }
+
+}   
