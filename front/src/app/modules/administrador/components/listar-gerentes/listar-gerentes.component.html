@@ -1,0 +1,20 @@
+<div class="container">
+  <h2 class="mb-3 text-center">Listagem de Gerentes</h2>
+  <table class="home-table">
+    <thead class="bg-secondary">
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>CPF</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let gerente of listaGerentes">
+      <td>{{ gerente.nome }}</td>
+      <td>{{ gerente.email }}</td>
+      <td>{{ gerente.telefone }}</td>
+      <td>{{ gerente.cpf }}</td>
+    </tr>
+    </tbody>
+  </table>

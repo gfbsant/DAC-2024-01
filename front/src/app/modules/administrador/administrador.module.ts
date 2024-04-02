@@ -13,13 +13,15 @@ import {
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 import {MatProgressBar} from "@angular/material/progress-bar";
+import { ListarGerentesComponent } from './components/listar-gerentes/listar-gerentes.component';
 
 
 
 @NgModule({
   declarations: [
     RelatorioComponent,
-    HomeAdministradorComponent
+    HomeAdministradorComponent,
+    ListarGerentesComponent
   ],
   imports: [
     CommonModule,
