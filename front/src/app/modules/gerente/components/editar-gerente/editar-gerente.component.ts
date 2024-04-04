@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {GerenteService} from "../../../../services/gerente/gerente.service";
-import {ActivatedRoute} from "@angular/router";
+import { Component } from '@angular/core';
+import { GerenteService } from "../../../../services/gerente/gerente.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-editar-gerente',
@@ -11,16 +11,29 @@ export class EditarGerenteComponent {
 
   protected readonly history = history;
   gerente: any;
-
+  id: string = "";
   constructor(private route: ActivatedRoute, private gerenteService: GerenteService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+
+    this.id = this.route.snapshot.params['id'];
+
+    this.gerenteService.getGerenteById(+this.id).subscribe(
+      gerente => {this.gerente = gerente;
+      }
+    );
+
+
+    /*
     this.route.params.subscribe(params => {
       this.gerenteService.getGerenteById(params['id'] ?? 1).subscribe(gerente => {
         this.gerente = gerente;
       });
     });
+    */
+
+
   }
 
   salvar() {

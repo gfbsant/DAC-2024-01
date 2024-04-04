@@ -6,13 +6,15 @@ import { ClienteService } from "../../../../services/cliente/cliente.service";
 import { ContaService } from "../../../../services/conta/conta.service";
 import { Conta } from "../../../../models/conta/conta.model";
 import { Gerente } from "../../../../models/gerente/gerente.model";
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-listar-clientes',
   templateUrl: './listar-clientes.component.html',
-  styleUrl: './listar-clientes.component.css'
+  styleUrl: './listar-clientes.component.css',
 })
+
 export class ListarClientesComponent {
   listaClientes: Cliente[] = [];
   cpf: string = '';
@@ -21,7 +23,7 @@ export class ListarClientesComponent {
   conta?: Conta;
   gerente?: Gerente;
   exibirDadosConta: boolean = false;
-  
+
   constructor(
     private clienteService: ClienteService,
     private contaService: ContaService,
@@ -30,14 +32,18 @@ export class ListarClientesComponent {
   ) { }
 
   ngOnInit(): void {
-    
+    /*
+    this.gerenteService.getGerenteById(1).subscribe({
+      this.gerente
+    }) 
+    */
     
     this.carregarClientesDoGerente("João");
     ///nome do gerente inserido a força
- 
+
   }
 
-  carregarClientesDoGerente(gerente : string): void {
+  carregarClientesDoGerente(gerente: string): void {
     this.gerenteService.getTodosClientesPorGerente(gerente).subscribe({
       next: (clientes) => {
         this.listaClientes = clientes;
@@ -47,10 +53,7 @@ export class ListarClientesComponent {
       }
     });
   }
- 
-
-
-  consultarCliente(cpf : string): void {
+  consultarCliente(cpf: string): void {
     this.clienteService.getClienteByCPF(cpf).subscribe(resultado => {
       if (resultado) {
         this.cliente = resultado.cliente;
@@ -68,8 +71,8 @@ export class ListarClientesComponent {
         this.erro = true;
         this.cliente = undefined;
         this.conta = undefined;
-      
-        
+
+
       }
     });
   }

@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {EditarPerfilComponent} from './components/editar-perfil/editar-perfil.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AutenticacaoComponent} from '../auth/components/autenticacao/autenticacao.component';
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import {ConsultaExtratoComponent} from './components/consulta-extrato/consulta-extrato.component';
 import {HomeClienteComponent} from './components/home-cliente/home-cliente.component';
 import {SaqueComponent} from './components/saque/saque.component';
@@ -30,6 +30,7 @@ import {AppModule} from "../../app.module";
     NgxMaskDirective,
     ReactiveFormsModule,
     NgxMaskPipe,
+    RouterModule
   ]
 })
 export class ClienteModule {

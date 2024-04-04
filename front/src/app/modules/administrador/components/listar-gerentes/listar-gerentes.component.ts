@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Gerente } from '../../../../models/gerente/gerente.model';
 import { GerenteService } from '../../../../services/gerente/gerente.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ExcluirGerenteComponent } from '../excluir-gerente/excluir-gerente.component';
 
 @Component({
   selector: 'app-listar-gerentes',
@@ -8,18 +10,20 @@ import { GerenteService } from '../../../../services/gerente/gerente.service';
   styleUrl: './listar-gerentes.component.css'
 })
 export class ListarGerentesComponent {
-listaGerentes: Gerente[] = [];
+  listaGerentes: Gerente[] = [];
   nome: string = '';
   cpf: string = '';
   email: string = '';
   telefone: string = ''
 
   constructor(
-    private gerenteService: GerenteService
+    private gerenteService: GerenteService,
+    private modalService: NgbModal,
+   // private excluirGerente: ExcluirGerenteComponent,
   ) { }
 
   ngOnInit(): void {
-      this.carregarGerentes();
+    this.carregarGerentes();
   }
 
   carregarGerentes(): void {
@@ -32,4 +36,10 @@ listaGerentes: Gerente[] = [];
       }
     });
   }
+
+  abrirModalExcluirGerente(gerente: Gerente) {
+    const modalRef = this.modalService.open(ExcluirGerenteComponent);
+    modalRef.componentInstance.gerente = gerente;
+  }
+
 }

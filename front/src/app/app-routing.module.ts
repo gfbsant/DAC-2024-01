@@ -19,6 +19,8 @@ import {EditarGerenteComponent} from "./modules/gerente/components/editar-gerent
 import { ListarClientesComponent } from './modules/gerente/components/listar-clientes/listar-clientes.component';
 import { InserirGerenteComponent } from './modules/gerente/components/inserir-gerente/inserir-gerente.component';
 import { ListarGerentesComponent } from './modules/administrador/components/listar-gerentes/listar-gerentes.component';
+import { ExcluirGerenteComponent } from './modules/administrador/components/excluir-gerente/excluir-gerente.component';
+
 
 const AuthRoutes: Routes = [
   {path: '', redirectTo: '/autenticacao', pathMatch: 'full'},
@@ -41,9 +43,11 @@ const AdministradorRoutes: Routes = [
   {path: 'adm', redirectTo: 'administrador/home-administrador', pathMatch: 'full'},
   {path: 'administrador/relatorio', component: RelatorioComponent},
   {path: 'administrador/home-administrador', component: HomeAdministradorComponent},
-  {path: 'administrador/editar-gerente', component: EditarGerenteComponent},
+  {path: 'administrador/editar-gerente/:id', component: EditarGerenteComponent},
   {path: 'administrador/inserir-gerente', component: InserirGerenteComponent},
-  {path: 'administrador/listar-gerentes', component: ListarGerentesComponent}
+  {path: 'administrador/listar-gerentes', component: ListarGerentesComponent},
+  {path: 'administrador/excluir-gerente/:id', component: ExcluirGerenteComponent},
+
 ];
 
 const GerenteRoutes: Routes = [

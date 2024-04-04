@@ -2,19 +2,31 @@
   <h2 class="mb-3 text-center">Listagem de Gerentes</h2>
   <table class="home-table">
     <thead class="bg-secondary">
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Telefone</th>
-      <th>CPF</th>
-    </tr>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>CPF</th>
+        <th>Consultar Cliente</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let gerente of listaGerentes">
-      <td>{{ gerente.nome }}</td>
-      <td>{{ gerente.email }}</td>
-      <td>{{ gerente.telefone }}</td>
-      <td>{{ gerente.cpf }}</td>
-    </tr>
+      <tr *ngFor="let gerente of listaGerentes">
+        <td>{{ gerente.nome }}</td>
+        <td>{{ gerente.email }}</td>
+        <td>{{ gerente.telefone }}</td>
+        <td>{{ gerente.cpf }}</td>
+        <td>
+          <a [routerLink]="['/administrador/editar-gerente', gerente.id]" href="#" title="Editar"
+            class="btn btn-xs btn-warning">
+            
+            Editar
+          </a>
+          <button type="submit" class="btn btn-danger"
+           (click)="abrirModalExcluirGerente(gerente)">Excluir</button>
+        
+        </td>
+      </tr>
     </tbody>
   </table>
+</div>
