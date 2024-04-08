@@ -1,7 +1,6 @@
 package br.com.bantads.ms_cliente.rest;
 
 import br.com.bantads.ms_cliente.dto.ClienteDTO;
-import br.com.bantads.ms_cliente.exception.BadRequestException;
 import br.com.bantads.ms_cliente.exception.ConflictException;
 import br.com.bantads.ms_cliente.exception.ResourceNotFoundException;
 import br.com.bantads.ms_cliente.model.Cliente;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 
@@ -22,7 +20,6 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/cliente")
 public class ClienteREST {
 
-    private final Logger logger = Logger.getLogger(ClienteREST.class.getName());
 
     private final ClienteRepository repoCliente;
     private final ModelMapper modelMapper;
@@ -51,7 +48,6 @@ public class ClienteREST {
     */
     @PostMapping()
     public ResponseEntity<ClienteDTO> create(@RequestBody ClienteDTO clienteDTO) {
-        logger.info("Creating a new Cliente");
         checkDataIntegrity(clienteDTO);
         Cliente entity = modelMapper.map(clienteDTO, Cliente.class);
         ClienteDTO savedInstance = modelMapper.map(repoCliente.save(entity), ClienteDTO.class);
@@ -70,21 +66,17 @@ public class ClienteREST {
     /// exemplo de chamada: http://localhost:8080/cliente?id=1
     @GetMapping(params = "id")
     public ClienteDTO findById(@RequestParam Long id) {
-        logger.info("Finding a person with ID: " + id);
         Cliente entity = repoCliente.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException(
                         "Cliente not found with id = " + id));
-        logger.info("Person found!");
         return modelMapper.map(entity, ClienteDTO.class);
     }
 
     /// exemplo de chamada: http://localhost:8080/cliente?email=teste@gmail.com
     @GetMapping(params = "email")
     public ClienteDTO findByEmail(@RequestParam String email) {
-        logger.info("Finding a person with email: " + email);
         Cliente entity = repoCliente.findByEmail(email)
                 .orElseThrow(() -> new ResourceNotFoundException("Cliente not found with email = " + email));
-        logger.info("Person found!");
         return modelMapper.map(entity, ClienteDTO.class);
     }
 
@@ -107,9 +99,8 @@ public class ClienteREST {
      */
     @PutMapping()
     public ClienteDTO update(@RequestBody ClienteDTO clienteDTO) {
-        logger.info("Editing a person with ID: " + clienteDTO.getId());
         if (clienteDTO.getId() == null)
-            throw new BadRequestException("ID attribute is required!");
+            throw new IllegalArgumentException("ID attribute is required!");
         checkDataIntegrity(clienteDTO);
         Cliente entity = repoCliente.findById(clienteDTO.getId()).orElseThrow(
                 () -> new ResourceNotFoundException("Cliente not found with id = " + clienteDTO.getId()));
@@ -119,19 +110,17 @@ public class ClienteREST {
     /// exemplo de chamada: http://localhost:8080/cliente?id=1
     @DeleteMapping(params = "id")
     public ResponseEntity<?> delete(@RequestParam Long id) {
-        logger.info("Deleting a person with ID: " + id);
         Cliente entity = repoCliente.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Cliente not found with id = " + id));
         repoCliente.delete(entity);
-        logger.info("Person deleted!");
         return ResponseEntity.noContent().build();
     }
 
     private void checkDataIntegrity(ClienteDTO clienteDTO) {
         if (clienteDTO.getEmail() == null)
-            throw new BadRequestException("Email attribute is required!");
+            throw new IllegalArgumentException("Email attribute is required!");
         if (clienteDTO.getCpf() == null)
-            throw new BadRequestException("CPF attribute is required!");
+            throw new IllegalArgumentException("CPF attribute is required!");
         repoCliente.findByEmail(clienteDTO.getEmail()).ifPresent(c -> {
             if (!c.getId().equals(clienteDTO.getId()))
                 throw new ConflictException("Cliente already registered with email = " + c.getEmail());
