@@ -1,12 +1,14 @@
 package br.com.bantads.ms_cliente.rest;
 
 import br.com.bantads.ms_cliente.dto.ClienteDTO;
+import br.com.bantads.ms_cliente.exception.BadRequestException;
 import br.com.bantads.ms_cliente.exception.ConflictException;
 import br.com.bantads.ms_cliente.exception.ResourceNotFoundException;
 import br.com.bantads.ms_cliente.model.Cliente;
 import br.com.bantads.ms_cliente.repository.ClienteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,11 +50,13 @@ public class ClienteREST {
     }
     */
     @PostMapping()
-    public ClienteDTO create(@RequestBody ClienteDTO clienteDTO) {
+    public ResponseEntity<ClienteDTO> create(@RequestBody ClienteDTO clienteDTO) {
         logger.info("Creating a new Cliente");
         checkDataIntegrity(clienteDTO);
         Cliente entity = modelMapper.map(clienteDTO, Cliente.class);
-        return modelMapper.map(repoCliente.save(entity), ClienteDTO.class);
+        //quero retornar um status code created (201)
+        ClienteDTO savedInstance = modelMapper.map(repoCliente.save(entity), ClienteDTO.class);
+        return new ResponseEntity<>(savedInstance, HttpStatus.CREATED);
     }
 
     /// exemplo de chamada: http://localhost:8080/cliente
@@ -105,22 +109,13 @@ public class ClienteREST {
     @PutMapping()
     public ClienteDTO update(@RequestBody ClienteDTO clienteDTO) {
         logger.info("Editing a person with ID: " + clienteDTO.getId());
+        if (clienteDTO.getId() == null)
+            throw new BadRequestException("ID attribute is required!");
         checkDataIntegrity(clienteDTO);
         Cliente entity = repoCliente.findById(clienteDTO.getId()).orElseThrow(
                 () -> new ResourceNotFoundException("Cliente not found with id = " + clienteDTO.getId()));
-        entity.setNome(clienteDTO.getNome());
-        entity.setEmail(clienteDTO.getEmail());
-        entity.setCpf(clienteDTO.getCpf());
-        entity.setTelefone(clienteDTO.getTelefone());
-        entity.setCep(clienteDTO.getCep());
-        entity.setNumero(clienteDTO.getNumero());
-        entity.setComplemento(clienteDTO.getComplemento());
-        entity.setSalario(clienteDTO.getSalario());
-        entity.setSaldo(clienteDTO.getSaldo());
-        entity.setSituacaoCadastral(clienteDTO.getSituacaoCadastral());
-        return modelMapper.map(repoCliente.save(entity), ClienteDTO.class);
+        return modelMapper.map(repoCliente.save(updatedEntity(clienteDTO, entity)), ClienteDTO.class);
     }
-
 
     /// exemplo de chamada: http://localhost:8080/cliente?id=1
     @DeleteMapping(params = "id")
@@ -134,6 +129,10 @@ public class ClienteREST {
     }
 
     private void checkDataIntegrity(ClienteDTO clienteDTO) {
+        if (clienteDTO.getEmail() == null)
+            throw new BadRequestException("Email attribute is required!");
+        if (clienteDTO.getCpf() == null)
+            throw new BadRequestException("CPF attribute is required!");
         repoCliente.findByEmail(clienteDTO.getEmail()).ifPresent(c -> {
             if (!c.getId().equals(clienteDTO.getId()))
                 throw new ConflictException("Cliente already registered with email = " + c.getEmail());
@@ -144,4 +143,17 @@ public class ClienteREST {
         });
     }
 
+    static private Cliente updatedEntity(ClienteDTO clienteDTO, Cliente entity) {
+        entity.setNome(clienteDTO.getNome());
+        entity.setEmail(clienteDTO.getEmail());
+        entity.setCpf(clienteDTO.getCpf());
+        entity.setTelefone(clienteDTO.getTelefone());
+        entity.setCep(clienteDTO.getCep());
+        entity.setNumero(clienteDTO.getNumero());
+        entity.setComplemento(clienteDTO.getComplemento());
+        entity.setSalario(clienteDTO.getSalario());
+        entity.setSaldo(clienteDTO.getSaldo());
+        entity.setSituacaoCadastral(clienteDTO.getSituacaoCadastral());
+        return entity;
+    }
 }
