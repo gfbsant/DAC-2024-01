@@ -9,6 +9,7 @@ import {ConsultaClienteComponent} from "./components/consulta-cliente/consulta-c
 import { EditarGerenteComponent } from './components/editar-gerente/editar-gerente.component';
 import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
 import { InserirGerenteComponent } from './components/inserir-gerente/inserir-gerente.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { InserirGerenteComponent } from './components/inserir-gerente/inserir-ge
   imports: [
     CommonModule,
     FormsModule,
-    NgxMaskDirective
+    NgxMaskDirective,
+    RouterModule
   ]
 })
 export class GerenteModule { }

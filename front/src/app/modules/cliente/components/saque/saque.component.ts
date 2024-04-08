@@ -100,43 +100,6 @@ export class SaqueComponent {
     });
   }
 
-  /*
-  testavalor() {
-    this.mensagem = String(this.valorSaque);
-    this.testavalor2;
-  }
-
-  testavalor2() {
-    this.ms = this.valor;
-  }
-
-  testeAlert() {
-    alert("teste alerta")
-  }
-
-  testeAlert2() {
-    alert("testa alert 2");
-  }
-
-  validarvalor() {
-    if (this.valor != null) {
-
-      if (this.valor < 110.00) {
-        this.mensagem = "menor q 110"
-      }
-      if (this.valor > 110.00) {
-        this.mensagem = "MAIOR q 110"
-      }
-
-      if (Number(this.cliente?.saldo) < Number(this.valor)) {
-        this.mensagem = "maior q saldo"
-      }
-      if (Number(this.cliente?.saldo) > Number(this.valor)) {
-        this.mensagem = "MENorrr q saldo"
-      }
-    }
-  }
-*/
   confirmacaoSacar() {
     if (this.formSaque) {
       let valorDesejado = parseFloat(this.formSaque.value.replace(/[R$\.,]/g, '')) / 100;
