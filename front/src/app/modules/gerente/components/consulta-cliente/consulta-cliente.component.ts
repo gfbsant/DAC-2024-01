@@ -5,6 +5,10 @@ import {Conta} from "../../../../models/conta/conta.model";
 import {ContaService} from "../../../../services/conta/conta.service";
 import {GerenteService} from "../../../../services/gerente/gerente.service";
 import {Gerente} from "../../../../models/gerente/gerente.model";
+import cep from 'cep-promise';
+import {Endereco} from "../../../../models/cliente/endereco/endereco";
+
+
 
 @Component({
   selector: 'app-consulta-cliente',
@@ -18,6 +22,8 @@ export class ConsultaClienteComponent {
   conta?: Conta;
   gerente?: Gerente;
   exibirDadosConta: boolean = false;
+  endereco?: Endereco;
+
 
   constructor(
     private clienteService: ClienteService,
@@ -40,12 +46,16 @@ export class ConsultaClienteComponent {
             });
           }
         });
+        cep(this.cliente.cep).then(endereco => {
+          this.endereco = endereco;
+        });
       } else {
         this.erro = true;
         this.cliente = undefined;
         this.conta = undefined;
       }
     });
+
   }
 
   mostrarDadosDoCliente(): void {
@@ -55,5 +65,6 @@ export class ConsultaClienteComponent {
   mostrarDadosDaConta(): void {
     this.exibirDadosConta = true;
   }
+
 
 }

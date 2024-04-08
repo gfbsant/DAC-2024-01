@@ -1,12 +1,12 @@
-import { Component, Output } from '@angular/core';
-import { Cliente } from '../../../../models/cliente/cliente.model';
-import { GerenteService } from '../../../../services/gerente/gerente.service';
-import { ConsultaClienteComponent } from '../consulta-cliente/consulta-cliente.component';
-import { ClienteService } from "../../../../services/cliente/cliente.service";
-import { ContaService } from "../../../../services/conta/conta.service";
-import { Conta } from "../../../../models/conta/conta.model";
-import { Gerente } from "../../../../models/gerente/gerente.model";
-import { RouterModule } from '@angular/router';
+import {Component} from '@angular/core';
+import {Cliente} from '../../../../models/cliente/cliente.model';
+import {GerenteService} from '../../../../services/gerente/gerente.service';
+import {ClienteService} from "../../../../services/cliente/cliente.service";
+import {ContaService} from "../../../../services/conta/conta.service";
+import {Conta} from "../../../../models/conta/conta.model";
+import {Gerente} from "../../../../models/gerente/gerente.model";
+import cep from 'cep-promise';
+import {Endereco} from "../../../../models/cliente/endereco/endereco";
 
 
 @Component({
@@ -23,6 +23,8 @@ export class ListarClientesComponent {
   conta?: Conta;
   gerente?: Gerente;
   exibirDadosConta: boolean = false;
+  endereco?: Endereco;
+
 
   constructor(
     private clienteService: ClienteService,
@@ -35,9 +37,9 @@ export class ListarClientesComponent {
     /*
     this.gerenteService.getGerenteById(1).subscribe({
       this.gerente
-    }) 
+    })
     */
-    
+
     this.carregarClientesDoGerente("João");
     ///nome do gerente inserido a força
 
@@ -58,7 +60,9 @@ export class ListarClientesComponent {
       if (resultado) {
         this.cliente = resultado.cliente;
         this.erro = false;
-
+        cep(this.cliente.cep).then(endereco => {
+          this.endereco = endereco;
+        });
         this.contaService.getContas().subscribe(contas => {
           this.conta = contas.find(conta => conta.clienteId === this.cliente?.id);
           if (this.conta) {
