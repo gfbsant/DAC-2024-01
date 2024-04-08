@@ -17,9 +17,9 @@ import { ListarTop3ClientesComponent } from "./modules/gerente/components/listar
 import {ConsultaClienteComponent} from "./modules/gerente/components/consulta-cliente/consulta-cliente.component";
 import {EditarGerenteComponent} from "./modules/gerente/components/editar-gerente/editar-gerente.component";
 import { ListarClientesComponent } from './modules/gerente/components/listar-clientes/listar-clientes.component';
-import { InserirGerenteComponent } from './modules/gerente/components/inserir-gerente/inserir-gerente.component';
 import { ListarGerentesComponent } from './modules/administrador/components/listar-gerentes/listar-gerentes.component';
 import { ExcluirGerenteComponent } from './modules/administrador/components/excluir-gerente/excluir-gerente.component';
+import { InserirGerenteComponent } from './modules/administrador/components/inserir-gerente/inserir-gerente.component';
 
 
 const AuthRoutes: Routes = [

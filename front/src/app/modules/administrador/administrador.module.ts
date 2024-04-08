@@ -16,13 +16,16 @@ import {MatProgressBar} from "@angular/material/progress-bar";
 import { ListarGerentesComponent } from './components/listar-gerentes/listar-gerentes.component';
 import { RouterModule } from '@angular/router';
 import { ExcluirGerenteComponent } from './components/excluir-gerente/excluir-gerente.component';
+import { InserirGerenteComponent } from './components/inserir-gerente/inserir-gerente.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     RelatorioComponent,
     HomeAdministradorComponent,
     ListarGerentesComponent,
-    ExcluirGerenteComponent
+    ExcluirGerenteComponent,
+    InserirGerenteComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import { ExcluirGerenteComponent } from './components/excluir-gerente/excluir-ge
     MatTreeNodePadding,
     MatTreeNodeDef,
     MatProgressBar,
-    RouterModule
+    RouterModule,
+    FormsModule
   ]
 })
 export class AdministradorModule { }

@@ -9,6 +9,7 @@ import {map} from "rxjs/operators";
   providedIn: 'root'
 })
 export class GerenteService {
+  gerentes: Gerente[] = [];
 
   constructor(private clienteService: ClienteService) {
   }
@@ -51,6 +52,13 @@ export class GerenteService {
     return of(this.clienteService.getClientes()
       .filter(cliente => cliente.gerente === idGerente )
       .sort((a, b) => (b.nome > a.nome ? -1 : 1)));
+  }
+
+  inserirGerente(nome: string,email: string,telefone: string,cpf: string): void{
+    var newId = Date.now();
+    var clientes: Cliente[] = [];
+    var gerente = new Gerente(newId,nome,cpf,email,telefone,clientes);
+    this.gerentes.push(gerente);
   }
 
 }   
