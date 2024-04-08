@@ -1,29 +1,20 @@
 import {Injectable} from '@angular/core';
+import {Observable} from "rxjs";
 import {UsuarioService} from "../usuario/usuario.service";
 import {Login} from "../../models/login/login.model";
 import {Usuario} from "../../models/usuario/usuario.model";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {LoginResponse} from '../../modules/auth/components/autenticacao/type/login-response.type';
-import {tap} from 'rxjs';
 
 const LS_CHAVE: string = "usuarioLogado";
+const AUTH_API = 'http://localhost:8080/api/auth/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  API_AUTH = 'http://localhost:5000/auth';
 
-  httpOptions = {
-    observe: 'response' as 'response',
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
   private usuario?: Usuario;
 
-  constructor(
-    private usuarioService: UsuarioService, private http: HttpClient) {
+  constructor(private usuarioService: UsuarioService) {
   }
 
   public get usuarioLogado(): Usuario {
@@ -36,19 +27,12 @@ export class AuthService {
   }
 
   public logout() {
-    delete
-      localStorage
-        [LS_CHAVE];
+    delete localStorage[LS_CHAVE];
   }
 
-  login(email: string, password: string) {
-    return this.http.post<LoginResponse>(this.API_AUTH + "/login",
-      {email, password}).pipe(
-      tap((value: any) => {
-        sessionStorage.setItem("auth-token", value.token)
-        sessionStorage.setItem("username", value.name)
-      })
-    );
+  public login(login: Login): Observable<Usuario | null> {
+    let observableUsuario = this.usuarioService.login(login);
+    return observableUsuario;
   }
 
   verifyLogin() {
@@ -61,8 +45,8 @@ export class AuthService {
   logarComoCliente() {
     this.verifyLogin();
     let login: Login = new Login('johndoe@gmail.com', '123456');
-    this.login(login.email!, login.senha!).subscribe(user => {
-      let usuario: Usuario = user as Usuario;
+    this.login(login).subscribe(user => {
+      let usuario: Usuario | null = user ? user : null;
       if (usuario != null) {
         this.logarUsuario = usuario;
       }
@@ -72,8 +56,8 @@ export class AuthService {
   logarComoGerente() {
     this.verifyLogin();
     let login: Login = new Login('alexmorgan@gmail.com', '123456');
-    this.login(login.email!, login.senha!).subscribe(user => {
-      let usuario: Usuario = user as Usuario;
+    this.login(login).subscribe(user => {
+      let usuario: Usuario | null = user ? user : null;
       if (usuario != null) {
         this.logarUsuario = usuario;
       }
@@ -83,8 +67,8 @@ export class AuthService {
   logarComoAdministrador() {
     this.verifyLogin();
     let login: Login = new Login('josephlucas@gmail.com', '123456');
-    this.login(login.email!, login.senha!).subscribe(user => {
-      let usuario: Usuario = user as Usuario;
+    this.login(login).subscribe(user => {
+      let usuario: Usuario | null = user ? user : null;
       if (usuario != null) {
         this.logarUsuario = usuario;
       }
@@ -92,6 +76,6 @@ export class AuthService {
   }
 
   register(value: any) {
-    return this.usuarioService.register(value);
+     return this.usuarioService.register(value);
   }
 }
