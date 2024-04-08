@@ -1,7 +1,6 @@
 package br.com.bantads.ms_cliente.dto;
 
 import br.com.bantads.ms_cliente.model.SitucacaoCadastral;
-import jakarta.persistence.*;
 
 public class ClienteDTO {
 
@@ -25,7 +24,6 @@ public class ClienteDTO {
 
     private double Saldo;
 
-    @Enumerated(EnumType.STRING)
     private SitucacaoCadastral situacaoCadastral;
 
     public ClienteDTO() {

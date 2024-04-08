@@ -54,7 +54,6 @@ public class ClienteREST {
         logger.info("Creating a new Cliente");
         checkDataIntegrity(clienteDTO);
         Cliente entity = modelMapper.map(clienteDTO, Cliente.class);
-        //quero retornar um status code created (201)
         ClienteDTO savedInstance = modelMapper.map(repoCliente.save(entity), ClienteDTO.class);
         return new ResponseEntity<>(savedInstance, HttpStatus.CREATED);
     }
