@@ -49,7 +49,7 @@ public class ClienteREST {
     */
     @PostMapping()
     public ClienteDTO create(@RequestBody ClienteDTO clienteDTO) {
-        logger.info("Creating a new person");
+        logger.info("Creating a new Cliente");
         checkDataIntegrity(clienteDTO);
         Cliente entity = modelMapper.map(clienteDTO, Cliente.class);
         return modelMapper.map(repoCliente.save(entity), ClienteDTO.class);
@@ -57,30 +57,30 @@ public class ClienteREST {
 
     /// exemplo de chamada: http://localhost:8080/cliente
     @GetMapping()
-    public List<ClienteDTO> getAll() {
-        List<Cliente> clientes = repoCliente.findAll();
-        return clientes.stream()
+    public List<ClienteDTO> findAll() {
+        List<Cliente> list = repoCliente.findAll();
+        return list.stream()
                 .map(c -> modelMapper.map(c, ClienteDTO.class))
                 .collect(Collectors.toList());
     }
 
     /// exemplo de chamada: http://localhost:8080/cliente?id=1
     @GetMapping(params = "id")
-    public ClienteDTO getById(@RequestParam Long id) {
+    public ClienteDTO findById(@RequestParam Long id) {
         logger.info("Finding a person with ID: " + id);
         Cliente entity = repoCliente.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException(
-                        "Cliente não encontrado com id: " + id));
+                        "Cliente not found with id = " + id));
         logger.info("Person found!");
         return modelMapper.map(entity, ClienteDTO.class);
     }
 
     /// exemplo de chamada: http://localhost:8080/cliente?email=teste@gmail.com
     @GetMapping(params = "email")
-    public ClienteDTO getByEmail(@RequestParam String email) {
+    public ClienteDTO findByEmail(@RequestParam String email) {
         logger.info("Finding a person with email: " + email);
         Cliente entity = repoCliente.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com email: " + email));
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente not found with email = " + email));
         logger.info("Person found!");
         return modelMapper.map(entity, ClienteDTO.class);
     }
@@ -107,7 +107,7 @@ public class ClienteREST {
         logger.info("Editing a person with ID: " + clienteDTO.getId());
         checkDataIntegrity(clienteDTO);
         Cliente entity = repoCliente.findById(clienteDTO.getId()).orElseThrow(
-                () -> new ResourceNotFoundException("Cliente não encontrado"));
+                () -> new ResourceNotFoundException("Cliente not found with id = " + clienteDTO.getId()));
         entity.setNome(clienteDTO.getNome());
         entity.setEmail(clienteDTO.getEmail());
         entity.setCpf(clienteDTO.getCpf());
@@ -127,7 +127,7 @@ public class ClienteREST {
     public ResponseEntity<?> delete(@RequestParam Long id) {
         logger.info("Deleting a person with ID: " + id);
         Cliente entity = repoCliente.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Cliente não encontrado"));
+                () -> new ResourceNotFoundException("Cliente not found with id = " + id));
         repoCliente.delete(entity);
         logger.info("Person deleted!");
         return ResponseEntity.noContent().build();
@@ -136,11 +136,11 @@ public class ClienteREST {
     private void checkDataIntegrity(ClienteDTO clienteDTO) {
         repoCliente.findByEmail(clienteDTO.getEmail()).ifPresent(c -> {
             if (!c.getId().equals(clienteDTO.getId()))
-                throw new ConflictException("Cliente já cadastrado com email: " + c.getEmail());
+                throw new ConflictException("Cliente already registered with email = " + c.getEmail());
         });
         repoCliente.findByCpf(clienteDTO.getCpf()).ifPresent(c -> {
             if (!c.getId().equals(clienteDTO.getId()))
-                throw new ConflictException("Cliente já cadastrado com cpf: " + c.getCpf());
+                throw new ConflictException("Cliente already registered with cpf = " + c.getCpf());
         });
     }
 
