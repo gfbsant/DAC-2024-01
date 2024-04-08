@@ -17,6 +17,8 @@ import {AdministradorModule} from './modules/administrador/administrador.module'
 
 import {MatTreeModule} from "@angular/material/tree";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {AuthService} from "./services/auth/auth.service";
+import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -38,12 +40,13 @@ registerLocaleData(localePt, 'pt-BR');
     AdministradorModule,
     CommonModule,
     ReactiveFormsModule,
-    MatTreeModule
+    MatTreeModule,
+    HttpClientModule
   ],
   providers: [
     provideNgxMask({},),
     {provide: LOCALE_ID, useValue: 'pt-BR'},
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
   ],
   exports: [
     NumericDirective
