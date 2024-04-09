@@ -8,7 +8,6 @@ import {NgxMaskDirective} from "ngx-mask";
 import {ConsultaClienteComponent} from "./components/consulta-cliente/consulta-cliente.component";
 import { EditarGerenteComponent } from './components/editar-gerente/editar-gerente.component';
 import { ListarClientesComponent } from './components/listar-clientes/listar-clientes.component';
-import { InserirGerenteComponent } from './components/inserir-gerente/inserir-gerente.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -18,8 +17,7 @@ import { RouterModule } from '@angular/router';
     ListarTop3ClientesComponent,
     ConsultaClienteComponent,
     EditarGerenteComponent,
-    ListarClientesComponent,
-    InserirGerenteComponent,
+    ListarClientesComponent
   ],
   imports: [
     CommonModule,
