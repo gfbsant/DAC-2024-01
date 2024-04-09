@@ -5,9 +5,8 @@ import {Conta} from "../../../../models/conta/conta.model";
 import {ContaService} from "../../../../services/conta/conta.service";
 import {GerenteService} from "../../../../services/gerente/gerente.service";
 import {Gerente} from "../../../../models/gerente/gerente.model";
-import cep from 'cep-promise';
 import {Endereco} from "../../../../models/cliente/endereco/endereco";
-
+import {BuscaCepService} from "../../../../services/buscacep/busca-cep.service";
 
 
 @Component({
@@ -24,16 +23,16 @@ export class ConsultaClienteComponent {
   exibirDadosConta: boolean = false;
   endereco?: Endereco;
 
-
   constructor(
     private clienteService: ClienteService,
     private contaService: ContaService,
-    private gerenteService: GerenteService
+    private gerenteService: GerenteService,
+    private buscaCep: BuscaCepService,
   ) {
   }
 
   consultarCliente(): void {
-    this.clienteService.getClienteByCPF(this.cpf).subscribe(resultado => {
+    this.clienteService.getClienteByCPF(this.cpf).subscribe(async resultado => {
       if (resultado) {
         this.cliente = resultado.cliente;
         this.erro = false;
@@ -46,9 +45,8 @@ export class ConsultaClienteComponent {
             });
           }
         });
-        cep(this.cliente.cep).then(endereco => {
-          this.endereco = endereco;
-        });
+        await this.searchCep(this.cliente.cep)
+        console.log("Cliente encontrado!")
       } else {
         this.erro = true;
         this.cliente = undefined;
@@ -66,5 +64,7 @@ export class ConsultaClienteComponent {
     this.exibirDadosConta = true;
   }
 
-
+  async searchCep(cep: string) {
+    this.endereco = await this.buscaCep.buscaCep(cep);
+  }
 }
