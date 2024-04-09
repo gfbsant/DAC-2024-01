@@ -53,8 +53,6 @@ export class DynamicDatabase {
       map(dataMap => dataMap.get(node))
     );
   }
-
-
 }
 
 export class DynamicDataSource implements DataSource<DynamicFlatNode> {
