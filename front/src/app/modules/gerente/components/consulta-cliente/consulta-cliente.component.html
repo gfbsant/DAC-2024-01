@@ -39,9 +39,9 @@
           <p><strong>CPF:</strong> {{ cliente.cpf }}</p>
           <p><strong>Email:</strong> {{ cliente.email }}</p>
           <p><strong>Telefone:</strong> {{ cliente.telefone }}</p>
-          <p><strong>Endereço:</strong> {{ cliente.endereco.rua }}, {{ cliente.endereco.numero }}
-            - {{ cliente.endereco.bairro }}, {{ cliente.endereco.cidade }} - {{ cliente.endereco.estado }}
-            , {{ cliente.endereco.cep }}</p>
+          <p><strong>Endereço:</strong> {{ endereco?.street }}, {{ cliente.numero }}
+            {{ cliente.complemento ? ', ' + cliente.complemento : '' }}, {{ endereco?.neighborhood }},
+            {{ endereco?.city }} - {{ endereco?.state }}, {{ cliente.cep }}</p>
           <p><strong>Salário:</strong> {{ cliente.salario | currency:'BRL' }}</p>
           <p><strong>Saldo:</strong> {{ cliente.saldo | currency:'BRL' }}</p>
           <p><strong>Situação Cadastral:</strong> {{ cliente.situacaoCadastral }}</p></div>

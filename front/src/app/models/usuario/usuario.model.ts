@@ -1,4 +1,3 @@
-import {Endereco} from "../endereco/endereco.model";
 
 export class Usuario {
   constructor(

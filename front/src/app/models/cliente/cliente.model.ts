@@ -1,4 +1,3 @@
-import {Endereco} from "../endereco/endereco.model";
 
 export class Cliente {
   id: number;
@@ -6,7 +5,9 @@ export class Cliente {
   email: string;
   cpf: string;
   telefone: string;
-  endereco: Endereco;
+  cep: string;
+  numero: string;
+  complemento: string;
   salario: number;
   senha: string;
   saldo: number;
@@ -18,7 +19,9 @@ export class Cliente {
               cpf: string,
               email: string,
               telefone: string,
-              endereco: Endereco,
+              cep: string,
+              numero: string,
+              complemento: string,
               salario: number,
               senha: string,
               saldo: number,
@@ -29,7 +32,9 @@ export class Cliente {
     this.cpf = cpf;
     this.email = email;
     this.telefone = telefone;
-    this.endereco = endereco;
+    this.cep = cep;
+    this.numero = numero;
+    this.complemento = complemento;
     this.salario = salario;
     this.senha = senha;
     this.saldo = saldo;

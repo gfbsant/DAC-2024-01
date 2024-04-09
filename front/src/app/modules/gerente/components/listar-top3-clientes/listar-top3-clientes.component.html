@@ -12,7 +12,7 @@
     <tbody>
     <tr *ngFor="let cliente of top3Clientes">
       <td>{{ cliente.nome }}</td>
-      <td>{{ cliente.saldo | currency }}</td>
+      <td>{{ cliente.saldo | currency: 'BRL' }}</td>
       <td>{{ cliente.email }}</td>
       <td>{{ cliente.telefone }}</td>
     </tr>
