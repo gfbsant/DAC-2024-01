@@ -74,8 +74,4 @@ export class AuthService {
       }
     });
   }
-
-  register(value: any) {
-     return this.usuarioService.register(value);
-  }
 }

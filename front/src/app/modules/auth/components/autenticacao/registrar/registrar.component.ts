@@ -1,12 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, NgForm, NgModel, Validators} from "@angular/forms";
+import {Component, ViewChild} from '@angular/core';
+import {NgForm, NgModel} from "@angular/forms";
 import {Usuario} from "../../../../../models/usuario/usuario.model";
 import {Router} from '@angular/router';
 import {CurrencyPipe} from "@angular/common";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NumericDirective} from "../../../../../shared/directives/numeric.directive";
-import {AuthService} from "../../../../../services/auth/auth.service";
 import {BuscaCepService} from "../../../../../services/buscacep/busca-cep.service";
+import {RegistrarService} from "../../../../../services/registrar/registrar.service";
 
 
 @Component({
@@ -43,7 +43,7 @@ export class RegistrarComponent {
     private router: Router,
     private currencyPipe: CurrencyPipe,
     private modalService: NgbModal,
-    private authService: AuthService,
+    private registrarService: RegistrarService,
     private buscaCep: BuscaCepService,
   ) {
     this.formattedSalario = 'R$ 0,00';
@@ -106,7 +106,7 @@ export class RegistrarComponent {
       registro.salario = this.salario;
       registro.cep = registro.cep.replace(/\D/g, '');
 
-      this.authService.register(registro).subscribe(
+      this.registrarService.register(registro).subscribe(
         (response: any) => {
           console.log('Usuário registrado com sucesso:', response);
           if (this.modalRef) {
