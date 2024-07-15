@@ -8,6 +8,9 @@ public class ClienteDTO {
 	private Long gerente;
 	private Long conta;
 	private EnderecoDTO endereco;
+	private String cep;
+	private String numero;
+	private String complemento;
 	private String email;
 	private String password;
 	private String role;
@@ -100,4 +103,30 @@ public class ClienteDTO {
 	public void setSalario(int salario) {
 		this.salario = salario;
 	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	
+	
 }
