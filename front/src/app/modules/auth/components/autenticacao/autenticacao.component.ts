@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {AuthService} from "../../../../services/auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-autenticacao',
@@ -9,7 +10,7 @@ import {AuthService} from "../../../../services/auth/auth.service";
 })
 export class AutenticacaoComponent {
 
-  constructor(private loginService: AuthService) {}
+  constructor(private loginService: AuthService, private router: Router) {}
 
   isLogin : boolean = true;
 
@@ -21,6 +22,8 @@ export class AutenticacaoComponent {
     onSubmit(form: NgForm) {
       if (this.isLogin) {
         console.log('Dados de login:', form.value);
+        this.router.navigate(['cliente/home-cliente'])
+
       } else {
         console.log('Dados de recuperação de senha:', form.value);
       }

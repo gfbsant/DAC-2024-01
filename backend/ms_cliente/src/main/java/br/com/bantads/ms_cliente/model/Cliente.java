@@ -39,10 +39,10 @@ public class Cliente implements Serializable {
     private String complemento;
 
     @Column(name = "salario")
-    private double Salario;
+    private double salario;
 
     @Column(name = "saldo")
-    private double Saldo;
+    private double saldo;
 
     @Enumerated(EnumType.STRING)
     private SitucacaoCadastral situacaoCadastral;
@@ -59,8 +59,8 @@ public class Cliente implements Serializable {
         this.cep = cep;
         this.numero = numero;
         this.complemento = complemento;
-        Salario = salario;
-        Saldo = saldo;
+        this.salario = salario;
+        this.saldo = saldo;
         this.situacaoCadastral = situacaoCadastral;
     }
 
@@ -105,19 +105,19 @@ public class Cliente implements Serializable {
     }
 
     public double getSalario() {
-        return Salario;
+        return salario;
     }
 
     public void setSalario(double salario) {
-        Salario = salario;
+        this.salario = salario;
     }
 
     public double getSaldo() {
-        return Saldo;
+        return saldo;
     }
 
     public void setSaldo(double saldo) {
-        Saldo = saldo;
+        this.saldo = saldo;
     }
 
     public SitucacaoCadastral getSituacaoCadastral() {
