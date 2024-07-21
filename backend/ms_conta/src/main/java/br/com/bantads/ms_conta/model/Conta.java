@@ -10,35 +10,39 @@ public class Conta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "cliente_conta")
     private Long clienteId;
 
     @Column(name = "numero_conta", unique = true)
     private String numeroConta;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "data_criacao")
+    @Column(name = "data_criacao_conta")
     private Date dataCriacao;
 
-    @Column(name = "limite")
+    @Column(name = "limite_conta")
     private double limite;
 
-    @Column(name = "gerente_id")
-    private Long gerenteId;
-
-    @OneToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
-    private Cliente cliente;
 
     public Conta() {
     }
 
-    public Conta(Long clienteId, String numeroConta, Date dataCriacao, double limite, Long gerenteId, Cliente cliente) {
+    public Conta(Long id,Long clienteId, String numeroConta, Date dataCriacao, double limite) {
+        this.id = id;
         this.clienteId = clienteId;
         this.numeroConta = numeroConta;
         this.dataCriacao = dataCriacao;
         this.limite = limite;
-        this.gerenteId = gerenteId;
-        this.cliente = cliente;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getClienteId() {
@@ -73,31 +77,14 @@ public class Conta {
         this.limite = limite;
     }
 
-    public Long getGerenteId() {
-        return gerenteId;
-    }
-
-    public void setGerenteId(Long gerenteId) {
-        this.gerenteId = gerenteId;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
     @Override
     public String toString() {
         return "Conta{" +
+                "contaId=" + id +
                 "clienteId=" + clienteId +
                 ", numeroConta='" + numeroConta + '\'' +
                 ", dataCriacao=" + dataCriacao +
                 ", limite=" + limite +
-                ", gerenteId=" + gerenteId +
-                ", cliente=" + cliente +
                 '}';
     }
 

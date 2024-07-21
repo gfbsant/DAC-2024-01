@@ -1,4 +1,4 @@
-package br.com.bantads.ms_cliente.exception;
+package br.com.bantads.ms_conta.exception;
 
 import java.io.Serial;
 import java.io.Serializable;

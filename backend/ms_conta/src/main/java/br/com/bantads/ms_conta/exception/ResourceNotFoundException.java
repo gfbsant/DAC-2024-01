@@ -1,4 +1,4 @@
-package br.com.bantads.ms_cliente.exception;
+package br.com.bantads.ms_conta.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

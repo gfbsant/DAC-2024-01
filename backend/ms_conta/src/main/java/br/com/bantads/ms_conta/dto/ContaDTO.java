@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class ContaDTO {
 
+    private Long id;
+
     private Long clienteId;
 
     private String numeroConta;
@@ -12,17 +14,24 @@ public class ContaDTO {
 
     private double limite;
 
-    private Long gerenteId;
 
     public ContaDTO() {
     }
 
-    public ContaDTO(Long clienteId, String numeroConta, Date dataCriacao, double limite, Long gerenteId) {
+    public ContaDTO(Long id, Long clienteId, String numeroConta, Date dataCriacao, double limite) {
+        this.id = id;
         this.clienteId = clienteId;
         this.numeroConta = numeroConta;
         this.dataCriacao = dataCriacao;
         this.limite = limite;
-        this.gerenteId = gerenteId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getClienteId() {
@@ -57,11 +66,4 @@ public class ContaDTO {
         this.limite = limite;
     }
 
-    public Long getGerenteId() {
-        return gerenteId;
-    }
-
-    public void setGerenteId(Long gerenteId) {
-        this.gerenteId = gerenteId;
-    }
 }

@@ -1,8 +1,8 @@
-package br.com.bantads.ms_cliente.exception.handler;
+package br.com.bantads.ms_conta.exception.handler;
 
-import br.com.bantads.ms_cliente.exception.ConflictException;
-import br.com.bantads.ms_cliente.exception.ExceptionResponse;
-import br.com.bantads.ms_cliente.exception.ResourceNotFoundException;
+import br.com.bantads.ms_conta.exception.ConflictException;
+import br.com.bantads.ms_conta.exception.ExceptionResponse;
+import br.com.bantads.ms_conta.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
