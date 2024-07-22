@@ -1,5 +1,15 @@
 package com.bantads.authmicroservice.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.bantads.authmicroservice.model.enums.ERole;
+
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -8,13 +18,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Getter
 @Setter
@@ -40,7 +43,7 @@ public class User implements UserDetails {
     private String password;
     private Boolean accountNonExpired;
     private Boolean accountNonLocked;
-    private List<String> roles;
+    private ERole roles;
     private Boolean enabled;
 
     @Override
